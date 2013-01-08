@@ -2,10 +2,9 @@ package ffm.slc.dispatch;
 
 import com.google.gson.Gson;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import ffm.slc.guice.HandlerModule;
-import sun.net.httpserver.HttpServerImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,13 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: Administrator
- * Date: 1/7/13
- * Time: 4:03 PM
- * To change this template use File | Settings | File Templates.
- */
+@Singleton
 public class DispatchServlet extends HttpServlet {
 
     Gson gson = new Gson();
@@ -29,9 +22,9 @@ public class DispatchServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String actionName = (String) req.getAttribute("action");
+        String actionName = req.getParameter("action");
 
-        String json = (String) req.getAttribute("data");
+        String json = req.getParameter("data");
 
         Class<? extends Action<?>> actionClass = null;
 
