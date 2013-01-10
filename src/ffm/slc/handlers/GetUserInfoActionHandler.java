@@ -15,6 +15,10 @@ public class GetUserInfoActionHandler implements ActionHandler<GetUserInfo, GetU
 
     @Override
     public GetUserInfo.Result execute(GetUserInfo action) throws ActionException {
+
+
+
+
         return new GetUserInfo.Result("testEmail");
     }
 }

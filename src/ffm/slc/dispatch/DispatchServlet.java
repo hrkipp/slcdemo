@@ -45,7 +45,7 @@ public class DispatchServlet extends HttpServlet {
             resp.getWriter().append(gson.toJson(result));
             resp.getWriter().close();
         } catch (ActionException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 
     }
