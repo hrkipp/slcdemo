@@ -6,6 +6,7 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import ffm.slc.guice.HandlerModule;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,16 @@ import java.io.IOException;
 @Singleton
 public class DispatchServlet extends HttpServlet {
 
-    Gson gson = new Gson();
+	private final Injector injector;
+	Gson gson = new Gson();
 
-    Injector inj =  Guice.createInjector(new HandlerModule());
+	@Inject
+	public DispatchServlet(Injector injector){
 
+		this.injector = injector;
+	}
+
+	@SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String actionName = req.getParameter("action");
@@ -38,7 +45,7 @@ public class DispatchServlet extends HttpServlet {
 
         Class<? extends ActionHandler> actionHandlerClass = action.getClass().getAnnotation(Handler.class).value();
 
-        ActionHandler actionHandler = inj.getInstance(actionHandlerClass);
+        ActionHandler actionHandler = injector.getInstance(actionHandlerClass);
 
         try {
             Result result = actionHandler.execute(action);

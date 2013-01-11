@@ -1,0 +1,103 @@
+package ffm.slc.model.enums;
+
+/**
+ * The item(s) to specifiy the special variation used in how an examination is presented, how it is administered, or how the test taker is allowed to respond. For example: For example: Braille Enlarged monitor view Extra time Large Print Setting Oral Administration ...
+ */
+public enum SpecialAccommodationItemType {
+	PRESENTATION("Presentation"),
+	RESPONSE("Response"),
+	SETTING("Setting"),
+	TIMING_AND_SCHEDULING("Timing and Scheduling"),
+	LARGE_PRINT("Large Print"),
+	DYSLEXIA_BUNDLED("Dyslexia Bundled"),
+	ORAL_ADMINISTRATION("Oral Administration"),
+	ADJUSTABLE_SWIVEL_ARM("Adjustable swivel arm"),
+	ADJUSTABLE_TABLE_HEIGHT("Adjustable table height"),
+	BRAILLE("Braille"),
+	ENLARGED_MONITOR_VIEW("Enlarged monitor view"),
+	EXTRA_TIME("Extra time"),
+	LARGE_PRINT_BOOKLET("Large print booklet"),
+	MULTI_DAY_ADMINISTRATION("Multi-day administration"),
+	RECORDER_OR_AMANUENSIS("Recorder or amanuensis"),
+	SEPARATE_ROOM("Separate room"),
+	SIGNER_SIGN_LANGUAGE_INTERPRETER("Signer/sign language interpreter"),
+	SPECIAL_FURNITURE("Special furniture"),
+	SPECIAL_LIGHTING("Special lighting"),
+	TRACK_BALL("Track ball"),
+	UNTIMED("Untimed"),
+	ENLARGED_KEYBOARD("Enlarged keyboard"),
+	ADDITIONAL_EXAMPLE_ITEMS_TASKS("Additional example items/tasks"),
+	ADMINISTRATION_IN_SEVERAL_SESSIONS("Administration in several sessions"),
+	ANSWERS_WRITTEN_DIRECTLY_IN_TEST_BOOKLET("Answers written directly in test booklet"),
+	ASSESSMENT_IN_NATIVE_LANGUAGE("Assessment in native language"),
+	ARITHMETIC_TABLE_MATH_OR_SCIENCE_("Arithmetic table (math or science)"),
+	ASSISTIVE_DEVICE_THAT_DOES_NOT_INTERFERE_WITH_INDEPENDENT_WORK_OF_THE_STUDENT("Assistive device that does not interfere with independent work of the student"),
+	ASSISTIVE_DEVICE_THAT_DOES_INTERFERE_WITH_INDEPENDENT_WORK_OF_THE_STUDENT("Assistive device that does interfere with independent work of the student"),
+	AUDIOTAPE_OR_CD("Audiotape or CD"),
+	AUDIO_CASSETTE_PLAYER("Audio cassette player"),
+	BRAILLE_WRITER_NO_THESAURUS_SPELL_OR_GRAMMAR_CHECKER("Braille writer, no thesaurus, spell- or grammar-checker"),
+	BREAKS_DURING_TESTING("Breaks during testing"),
+	CALCULATOR_MATH_OR_SCIENCE_("Calculator (math or science)"),
+	CLARIFY_DIRECTIONS("Clarify directions"),
+	COLORED_LENSES("Colored lenses"),
+	COMPUTER_ADMINISTRATION("Computer administration"),
+	CRANMER_ABACUS("Cranmer abacus"),
+	CUEING("Cueing"),
+	DICTIONARY_IN_ENGLISH("Dictionary in English"),
+	DICTIONARY_IN_NATIVE_LANGUAGE("Dictionary in native language"),
+	DICTATED_ORAL_REPSONSE_TO_A_PROCTOR_("Dictated oral repsonse (to a proctor)"),
+	DIRECTIONS_READ_ALOUD_OR_EXPLAINED("Directions read aloud or explained"),
+	EXAMINER_FAMILIARITY("Examiner familiarity"),
+	FONT_ENLARGED_BEYOND_PRINT_VERSION_REQUIREMENTS("Font enlarged beyond print version requirements"),
+	FOREIGN_LANGUAGE_INTERPRETER("Foreign language interpreter"),
+	FOREIGN_LANGUAGE_INTERPRETER_FOR_INSTRUCTIONS_ASK_QUESTIONS("Foreign language interpreter for instructions, ask questions"),
+	FORMAT("Format"),
+	HOSPITAL_HOME_TESTING("Hospital/home testing"),
+	LINGUISTIC_MODIFICATION_OF_TEST_DIRECTIONS("Linguistic modification of test directions"),
+	MAGNIFICATION_DEVICE("Magnification device"),
+	MANUALLY_CODED_ENGLISH_OR_AMERICAN_SIGN_LANGUAGE_TO_PRESENT_TEST_QUESTIONS("Manually coded English or American Sign Language to present test questions"),
+	MATH_MANIPULATIVES_MATH_OR_SCIENCE_("Math manipulatives (math or science)"),
+	MODIFICATION_OF_LINGUISTIC_COMPLEXITY("Modification of linguistic complexity"),
+	MULTIPLE_TEST_SESSIONS("Multiple test sessions"),
+	ORAL_DIRECTIONS_IN_THE_NATIVE_LANGUAGE("Oral directions in the native language"),
+	PARAPHRASING("Paraphrasing"),
+	PHYSICAL_SUPPORTS("Physical supports"),
+	RESPONSE_DICTATED_IN_AMERICAN_SIGN_LANGUAGE("Response dictated in American Sign Language"),
+	RESPONSE_IN_NATIVE_LANGUAGE("Response in native language"),
+	SCHEDULED_EXTENDED_TIME("Scheduled extended time"),
+	SEPARATE_ROOM_WITH_OTHER_ENGLISH_LEARNERS_UNDER_SUPERVISION_OF_DISTRICT_EMPLOYEE("Separate room with other English Learners under supervision of district employee"),
+	SIGNER_SIGN_LANGUAGE_FOR_INSTRUCTIONS_ASK_QUESTIONS("Signer/sign language for instructions, ask questions"),
+	SIMPLIFIED_LANGUAGE("Simplified language"),
+	SMALL_GROUP_OR_INDIVIDUAL_ADMINISTRATION("Small-group or individual administration"),
+	SPEECH_RECOGNITION_SYSTEM("Speech recognition system"),
+	SPELL_CHECKER("Spell-checker"),
+	SPECIALIZED_SETTING("Specialized setting"),
+	STUDENT_READ_ALOUD("Student read aloud"),
+	STUDENT_REQUESTED_EXTENDED_TIME("Student-requested extended time"),
+	SUPERVISED_TEST_BREAKS("Supervised test breaks"),
+	TECHNOLOGICAL_AID("Technological aid"),
+	TEST_ADMINISTRATOR_MARKED_WROTE_TEST_AT_STUDENT_S_DIRECTION("Test administrator marked / wrote test at student's direction"),
+	TEST_ADMINSTRATOR_READ_QUESTIONS_ALOUD("Test adminstrator read questions aloud"),
+	TEST_ADMINISTERED_AT_BEST_TIME_OF_DAY_FOR_STUDENT_HANDWRITING_ISSUES("Test administered at best time of day for student handwriting issues"),
+	TEXT_CHANGES_IN_VOCABULARY("Text changes in vocabulary"),
+	TRANSLATION_DICTIONARY("Translation dictionary"),
+	VERBALIZED_PROBLEM_SOLVING("Verbalized problem-solving"),
+	VIDEO_CASSETTE("Video cassette"),
+	VISUAL_CUES("Visual cues"),
+	WORD_PROCESSOR("Word processor"),
+	WORD_PROCESSOR_TYPEWRITER_COMPUTER_WITH_THESAURUS_SPELL_CHECKER_GRAMMAR_CHECKER_TURNED_OFF("Word processor / typewriter / computer with thesaurus / spell-checker / grammar-checker turned off"),
+	WORD_PROCESSOR_TYPEWRITER_COMPUTER_WITH_THESAURUS_SPELL_CHECKER_GRAMMAR_CHECKER_ENABLED_ON_ESSAY_RESPONSE_PORTION_OF_TEST("Word processor / typewriter / computer with thesaurus/ spell-checker/ grammar-checker enabled on essay response portion of test"),
+	UNKNOWN("Unknown"),
+	OTHER("Other");
+
+	private String prettyName;
+
+	SpecialAccommodationItemType(String prettyName) {
+		this.prettyName = prettyName;
+	}
+
+	@Override
+	public String toString() {
+		return prettyName;
+	}
+}
