@@ -1,7 +1,21 @@
-/**
- * Created with IntelliJ IDEA.
- * User: TJ
- * Date: 1/12/13
- * Time: 4:33 PM
- * To change this template use File | Settings | File Templates.
- */
+$(document).ready(function(){
+
+});
+function loadStudents(){
+    $.post("/dispatch",{
+        action: actions.loadStudents,
+        data : "{email : test}"
+    },function(data){
+        var response = jQuery.parseJSON(data);
+        console.log(data);
+    });
+}
+function saveGroup(){
+    $.post("/dispatch",{
+        action: actions.saveGroup,
+        data : "{email : test}"
+    },function(data){
+        var response = jQuery.parseJSON(data);
+        console.log(data);
+    });
+}
