@@ -1,13 +1,18 @@
 $(document).ready(function(){
-	$("#makeitso").click(function(){
-		$.post("/dispatch",{
-					action: actions.getUserInfo,
-					data : "{email : test}"
-				},function(data){
-					var response = jQuery.parseJSON(data);
-                    console.log(data);
-					$("#result").html(response);
-				});
-	})
-
+    loadDashboard();
+    $("#login").click(function(){ login(); });
 });
+
+function login(){
+
+}
+function loadDashboard(){
+    $.post("/dispatch",{
+        action: actions.loadDashboard,
+        data : "{email : test}"
+    },function(data){
+        var response = jQuery.parseJSON(data);
+        console.log(data);
+    });
+}
+
