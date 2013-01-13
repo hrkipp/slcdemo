@@ -8,5 +8,6 @@ public class loadSessions implements Action {
 
     public class result implements Result{
         private Session[] sessions;
+        private String username;
     }
 }
