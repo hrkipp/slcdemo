@@ -3,15 +3,18 @@ $(document).ready(function(){
 });
 
 function loadDashboard(){
+    console.log("loading dashboard");
     $.post("/dispatch",{
-        action: actions.loadSessions,
+        action: actions.loadDashboard,
         data : ""
     },function(data){
+        console.log(data);
         var response = jQuery.parseJSON(data);
         renderDashboard(response);
     });
 }function renderDashboard(d){
     $("#username").html(d.name);
+    if(d.group == null) return;
     for( var i=0; i< d.groups.length; i++){
         var group = d.groups[i];
         var $groupWidget = $("<a class='group_widget'></a>").attr('href',"group.html?id="+group.id);
