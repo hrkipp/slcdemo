@@ -100,7 +100,7 @@ public class StudentCohortAssociation extends Entity {
         }
 
         public void saveCustom(Custom custom, String cohort) {
-            ClientResponse resp = restClient.postRelative("api/rest/v1/studentCohortAssociation/{id}/custom".replace("{id}", cohort), gson.toJson(custom));
+            ClientResponse resp = restClient.postRelative("api/rest/v1/studentCohortAssociations/{id}/custom".replace("{id}", cohort), gson.toJson(custom));
         }
     }
 
