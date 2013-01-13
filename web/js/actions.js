@@ -1,8 +1,9 @@
 var actions = {
-	getUserInfo : "ffm.slc.actions.dashboard.loadDashboard",
+	getUserInfo : "ffm.slc.actions.GetUserInfo",
     loadDashboard : "ffm.slc.actions.dashboard.loadDashboard",
-    loadStudents : "",
-    loadGroup : "",
+    loadStudents : "ffm.slc.actions.newgroup.loadStudents",
+    loadSessions : "ffm.slc.actions.newgroup.loadSessions",
+    loadGroup : "ffm.slc.action.group.loadGroup",
     saveGroup : "",
-    loadSessions : "ffm.slc.actions.newgroup.loadSessions"
+    saveStudent : "ffm.slc.action.group.SaveStudent"
 }
