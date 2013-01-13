@@ -28,6 +28,7 @@ public class Student extends Entity {
     }
 
     public static class DAO {
+
         private final RestClient restClient;
         private final Gson gson;
         private Provider<HttpSession> sessionProvder;
@@ -40,7 +41,7 @@ public class Student extends Entity {
         }
 
         public Student[] getAll(String section){
-                String uri = "api/rest/v1/sections/{id}/studentSectionAssociations/students".replace("{id}", section);
+            String uri = "api/rest/v1/sections/{id}/studentSectionAssociations/students".replace("{id}", section);
             return gson.fromJson(restClient.getRelative(uri), Student[].class);
         }
 

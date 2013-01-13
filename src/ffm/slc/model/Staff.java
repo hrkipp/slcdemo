@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
-public class Staff {
+public class Staff extends Entity {
 
 	private UniqueStateIdentifier staffUniqueStateId;
 	private Name name;

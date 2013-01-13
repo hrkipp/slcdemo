@@ -6,8 +6,9 @@ public class SaveCohort implements Action<SaveCohort.Result> {
     private String name;
     private String description;
     private String successCondition;
-    private int startDate;
-    private int endDate;
+    private long startDate;
+    private int numOfWeeks;
+    private String[] students;
 
     public String getName() {
         return name;
@@ -33,24 +34,32 @@ public class SaveCohort implements Action<SaveCohort.Result> {
         this.successCondition = successCondition;
     }
 
-    public int getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(int startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
-    }
-
-    public int getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(int endDate) {
-        this.endDate = endDate;
     }
 
     public SaveCohort() {
 
+    }
+
+    public String[] getStudents() {
+        return students;
+    }
+
+    public void setStudents(String[] students) {
+        this.students = students;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public int getNumOfWeeks() {
+        return numOfWeeks;
+    }
+
+    public void setNumOfWeeks(int numOfWeeks) {
+        this.numOfWeeks = numOfWeeks;
     }
 
     public class Result implements ffm.slc.dispatch.Result{
