@@ -17,20 +17,22 @@ function loadStudents(s){
     });
 }
 function saveGroup(){
-    var name = $("#name").val();
-    var description = $("#description").val();
-    var success = $("#success_condition").val();
-    var students = $("");
-    var start = $("#start_date_picker").val();
-    var num_wks = $("#num_weeks").val();
+    var data = {
+        name : $("#name").val(),
+        description : $("#description").val(),
+        successCondition : $("#success_condition").val(),
+        students : $(""),
+        startDate : $("#start_date_picker").val(),
+        numOfWeeks : $("#num_weeks").val()
+    }
+        $.post("/dispatch",{
+            action: actions.saveGroup,
+            data : JSON.stringify(data)
+        },function(data){
+            var response = jQuery.parseJSON(data);
+            console.log(data);
+        });
     var session_length = $("#session_length").val();
-    $.post("/dispatch",{
-        action: actions.saveGroup,
-        data : "{email : test}"
-    },function(data){
-        var response = jQuery.parseJSON(data);
-        console.log(data);
-    });
 }
 
 function loadSections() {
