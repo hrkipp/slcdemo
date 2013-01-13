@@ -9,6 +9,7 @@ package ffm.slc.actions.group;
  */
 public class Session {
     private String name;
+    private String id;
     private String lessionObjective;
     private DataPoint[] data;
 }

@@ -9,6 +9,7 @@ package ffm.slc.actions.group;
  */
 public class DataPoint {
     private String name;
+    private String id;
     private int progress;
     private String observation;
     private Double score;

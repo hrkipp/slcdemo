@@ -19,6 +19,7 @@ public class loadGroup implements Action {
 
     public class Result implements ffm.slc.dispatch.Result{
         private String name;
+        private String username;
         private String description;
         private Session[] sessions;
     }

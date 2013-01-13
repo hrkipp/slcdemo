@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <title>SLC Demo - New Group page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+          
+    <!-- Le styles -->
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="libs/datepicker/css/datepicker.css" rel="stylesheet">
+    <link href="libs/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet">
+    <style type="text/css">
+          body {
+              padding-top: 60px;
+              padding-bottom: 40px;
+            }       
+    </style>  
+                      
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
 </head>
 <body>
 
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Create a New Group</h1>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose a Section<b class="caret"></b></a>
+            <ul class="dropdown-menu" id="new_group_section_choice_list">
+            </ul>
+      </div>
+
+      <form>
+        <fieldset>
+        <legend>Group Information</legend>
+        <div class="well">
+        <label>Group Name</label>
+        <input type="text" name="groupname">
+    </div>
+        <div class="well">
+        <label>Students</label>
+      <div class="btn-group" data-toggle="buttons-checkbox" id="student_selection_button_group">
+          <button type="button" class="btn btn-block btn-primary">Ronald Weasley</button>
+          <button type="button" class="btn btn-block btn-primary">Hermione Granger</button>
+          <button type="button" class="btn btn-block btn-primary">Harry Potter</button>
+      </div>
+      </div>
+        <div class="well">
+        <label>Teachers</label>
+      <div class="btn-group" data-toggle="buttons-checkbox" id="teacher_selection_button_group">
+          <button type="button" class="btn btn-block btn-primary">Minerva McGonagall</button>
+          <button type="button" class="btn btn-block btn-primary">Severus Snape</button>
+      </div>
+      </div>
+        <div class="well">
+        <label>Description</label>
+        <textarea type="text" rows="3" cols="500" placeholder="Type the group description…">
+            Type the group description...
+        </textarea>
+    </div>
+        <div class="well">
+        <label>Success Condition</label>
+        <textarea type="text" rows="3" cols="500" placeholder="Type the success condition(s)…">
+            Type the success condition(s)...
+        </textarea>
+    </div>
+          <div class="well">
+              <span> Start Date: </span>
+              <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
+          </span>
+              <span> End Date: </span>
+              <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="end_date_picker" >
+          </span>
+          </div>
+          <div class="well">
+            <label>When the group will meet</label>
+              <div class="btn-group" data-toggle="buttons-checkbox" id="weekday_selection_button_group">
+                  <button type="button" class="btn btn-primary">Monday </button>
+                  <button type="button" class="btn btn-primary">Tuesday </button>
+                  <button type="button" class="btn btn-primary">Wednesday </button>
+                  <button type="button" class="btn btn-primary">Thursday </button>
+                  <button type="button" class="btn btn-primary">Friday </button>
+              </div>
+              <div class="input-append bootstrap-timepicker-component">
+                  <input class="input-small timepicker-default" id="time_picker" type="text" value="09:00 AM">
+                  <span class="add-on"><i class="icon-time"></i></span>
+              </div>
+        </div>
+        <button type="submit" class="btn">Create Group</button>
+    </fieldset>
+    </form>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script src="libs/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="js/actions.js"></script>
 <script src="js/newgroup.js"></script>
 </body>
