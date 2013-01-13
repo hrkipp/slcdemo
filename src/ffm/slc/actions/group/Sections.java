@@ -7,7 +7,7 @@ package ffm.slc.actions.group;
  * Time: 5:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Session {
+public class Sections {
     private String name;
     private String id;
     private String lessionObjective;

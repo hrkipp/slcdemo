@@ -1,7 +1,6 @@
 package ffm.slc.actions.group;
 
 import ffm.slc.dispatch.Action;
-import ffm.slc.dispatch.Result;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +20,6 @@ public class loadGroup implements Action {
         private String name;
         private String username;
         private String description;
-        private Session[] sessions;
+        private Sections[] sections;
     }
 }
