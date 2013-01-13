@@ -44,9 +44,9 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
 
         cohort.setEducationOrg(schools[0].getId().getValue());
         cohort.setStaffId(new String[]{staff.getId().getValue()});
-        cohort.getCustom().setBeginDate(new Date(action.getStartDate() / 1000));
+        cohort.getCustom().setBeginDate(new Date(action.getStartDate()));
         cohort.getCustom().setSessionLength(action.getNumOfWeeks());
-        cohort.getCustom().setLearningObjectives(action.getLeadingObjectives());
+        cohort.getCustom().setLearningObjectives(action.getLearningObjectives());
         String id = cohortDAO.save(cohort);
 
 
@@ -63,7 +63,7 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
             StudentCohortAssociation sca = new StudentCohortAssociation();
             sca.setStudentid(s);
             sca.setCohortId(id);
-            sca.setBeginDate(new Date(action.getStartDate()/1000));
+            sca.setBeginDate(new Date(action.getStartDate()));
             sca.getCustom().setNotes(new String[action.getNumOfWeeks()]);
             sca.getCustom().setScore(new Double[action.getNumOfWeeks()]);
             sca.getCustom().setProgress(new int[action.getNumOfWeeks()]);

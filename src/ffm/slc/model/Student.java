@@ -46,7 +46,8 @@ public class Student extends Entity {
         }
 
         public Student get(String id){
-            return null;
+            String resp = "api/rest/v1/students/{id}".replace("{id}", id);
+            return gson.fromJson(restClient.getRelative(resp), Student.class);
         }
 
 

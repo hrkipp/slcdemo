@@ -23,7 +23,8 @@ public class loadStudentsActionHandler implements ActionHandler<loadStudents, lo
         ffm.slc.actions.newgroup.Student[] dtos = new ffm.slc.actions.newgroup.Student[students.length];
 
         for(int i = 0; i<students.length;i++){
-            dtos[i] = new ffm.slc.actions.newgroup.Student(students[i].getName().getFullame(), students[i].getId().getValue());
+            dtos[i] = new ffm.slc.actions.newgroup.Student(
+                    students[i].getName().getFirstName().getValue()+students[i].getName().getLastSurname().getValue(), students[i].getId().getValue());
         }
 
         return new loadStudents.Result(dtos);

@@ -32,7 +32,7 @@ public class SaveStudentActionHandler implements ActionHandler<SaveStudent, Save
         sca.getCustom().getProgress()[action.getWeek()] = action.getProgress();
 
 
-        scaDAO.save(sca);
+        scaDAO.saveCustom(sca.getCustom(), action.getCohort());
 
         return new SaveStudent.Result();
     }

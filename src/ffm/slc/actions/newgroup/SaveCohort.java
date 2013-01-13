@@ -12,7 +12,7 @@ public class SaveCohort implements Action<SaveCohort.Result> {
     private long startDate;
     private int numOfWeeks;
     private String[] students;
-    private String[] leadingObjectives;
+    private String[] learningObjectives;
 
     public String getName() {
         return name;
@@ -62,12 +62,12 @@ public class SaveCohort implements Action<SaveCohort.Result> {
         this.numOfWeeks = numOfWeeks;
     }
 
-    public String[] getLeadingObjectives() {
-        return leadingObjectives;
+    public String[] getLearningObjectives() {
+        return learningObjectives;
     }
 
-    public void setLeadingObjectives(String[] leadingObjectives) {
-        this.leadingObjectives = leadingObjectives;
+    public void setLearningObjectives(String[] learningObjectives) {
+        this.learningObjectives = learningObjectives;
     }
 
     public static class Result implements ffm.slc.dispatch.Result{
