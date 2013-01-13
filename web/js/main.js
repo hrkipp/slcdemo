@@ -7,14 +7,14 @@ $(document).ready(function(){
 });
 function loadMockDashboard(){
     var ret = {
-        name: "Linda Kim",
+        name: "Mrs Linda Kim",
         groups: [
             {
-                name: "Math Intervention 1",
+                name: "2nd Grade Subtraction Under 100",
                 id: "mi1",
                 startWeek: 2,
-                students: ["Student 1","Student 2","Student 3","Student 4","Student 5"],
-                sessions: [[1,2,3,4,5],[1,1,2,2,3],[4,3,5,2,5],[3,3,3,2,1]],
+                students: ["Felipe Cianciolo","Gerardo Rounsaville","Dominic Bavinon"],
+                sessions: [[1,2,3],[1,1,2],[4,3,5],[3,3,3]],
                 duration: 15
             },
             {

@@ -4,29 +4,29 @@ $(document).ready(function(){
 });
 function loadMockGroup(){
     var mock = {
-        name : "Math Intervention 1",
+        name : "2nd Grade Subtraction Under 100",
         username : "L Kim",
-        description : "Have all students achieve an average or above profficency in multiplication",
+        description : "Students will be able to subtract 2-digit numbers from 2-digit numbers under 100 using at least 2 strategies (jump back, jump up, expanded notation, traditional algorithm) and represent on a number line.",
         sections : [
             {
                 name :  "Week 1",
                 id : "id1",
-                lessonObjective: "do better",
+                lessonObjective: "Students will be able to subtract one digit numbers from 2 digit numbers ( e.g. 71 - 3, 88 - 9) and multiples of 10 (e.g. 71 - 20, 84 - 50) using count back strategies and represent using a number line model.",
                 data : [
                     {
-                        name : "Student 1",
+                        name : "Felipe Cianciolo",
                         id : "id0",
                         score : "1",
                         observation : "unable to complete",
                         progress : "1"
                     },{
-                        name : "Student 2",
+                        name : "Gerardo Rounsaville",
                         id : "id1",
                         score : "3",
                         observation : "average performance",
                         progress : "3"
                     },{
-                        name : "Student 3",
+                        name : "Dominic Bavinon",
                         id : "id2",
                         score : "5",
                         observation : "Excellent",
@@ -36,22 +36,22 @@ function loadMockGroup(){
             },{
                 name :  "Week 2",
                 id : "id1",
-                lessonObjective: "do better again",
+                lessonObjective: "Students will be able to use addition to check accuracy of subtraction problems and use addition to solve subtraction problems (adding up to subtract.)",
                 data : [
                     {
-                        name : "Student 1",
+                        name : "Felipe Cianciolo",
                         id : "id0",
                         score : "1",
                         observation : "unable to complete 2",
                         progress : "2"
                     },{
-                        name : "Student 2",
+                        name : "Gerardo Rounsaville",
                         id : "id1",
                         score : "3",
                         observation : "average performance 2",
                         progress : "4"
                     },{
-                        name : "Student 3",
+                        name : "Dominic Bavinon",
                         id : "id2",
                         score : "5",
                         observation : "Excellent 2",
@@ -61,22 +61,47 @@ function loadMockGroup(){
             },{
                 name :  "Week 3",
                 id : "id1",
-                lessonObjective: "do better yet again",
+                lessonObjective: "Students will be able to subtract a 10 and some ones from any number under 100, model on a number line, and check using addition. (e.g. 83 - 14, 75 - 19)",
                 data : [
                     {
-                        name : "Student 1",
+                        name : "Felipe Cianciolo",
                         id : "id0",
                         score : "1",
                         observation : "unable to complete",
                         progress : "3"
                     },{
-                        name : "Student 2",
+                        name : "Gerardo Rounsaville",
                         id : "id1",
                         score : "5",
                         observation : "average performance",
                         progress : "3"
                     },{
-                        name : "Student 3",
+                        name : "Dominic Bavinon",
+                        id : "id2",
+                        score : "5",
+                        observation : "Excellent",
+                        progress : "2"
+                    }
+                ]
+            },{
+                name :  "Week 4",
+                id : "id1",
+                lessonObjective: "Students will be able to subtract 2-digit from 2-digit numbers under 100 using both count back and count up strategies, model on a number line diagram, and check with addition.",
+                data : [
+                    {
+                        name : "Felipe Cianciolo",
+                        id : "id0",
+                        score : "1",
+                        observation : "unable to complete",
+                        progress : "3"
+                    },{
+                        name : "Gerardo Rounsaville",
+                        id : "id1",
+                        score : "5",
+                        observation : "average performance",
+                        progress : "3"
+                    },{
+                        name : "Dominic Bavinon",
                         id : "id2",
                         score : "5",
                         observation : "Excellent",
