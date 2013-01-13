@@ -96,7 +96,7 @@ public class StudentCohortAssociation extends Entity {
             for(StudentCohortAssociation c : scas){
                 c.setCustom(gson.fromJson(restClient.get(c.getLink("custom")), Custom.class));
             }
-            return gson.fromJson(restClient.getRelative(req), StudentCohortAssociation[].class);
+            return scas;
         }
 
         public void saveCustom(Custom custom, String cohort) {

@@ -10,7 +10,9 @@ import ffm.slc.model.Student;
 import ffm.slc.model.StudentCohortAssociation;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -45,6 +47,12 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
 
         Cohort[] cohorts = cohortDAO.getAll(staff.getId().getValue());
 
+        Arrays.sort(cohorts, new Comparator<Cohort>() {
+            public int compare(Cohort o1, Cohort o2) {
+                return o1.getCustom().getBeginDate().compareTo(o2.getCustom().getBeginDate());
+            }
+        });
+
         DbGroup[] groups = new DbGroup[cohorts.length];
         for(int i = 0; i<cohorts.length;i++){
 
@@ -54,13 +62,13 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
 
             String[] students = new String[scas.length];
 
-            for(int j = 0; i<scas.length;j++){
+            for(int j = 0; j<scas.length;j++){
                 Student s = studentDAO.get(scas[j].getStudentid());
 
-                students[j] = s.getName().getFullame();
+                students[j] = s.getName().getFirstName()+s.getName().getLastSurname().getValue();
 
                 for(int k = 0; k<cohorts[i].getCustom().getSessionLength();k++){
-                    data[i][k] = scas[j].getCustom().getProgress()[k];
+                    data[j][k] = scas[j].getCustom().getProgress()[k];
                 }
             }
 
@@ -69,9 +77,9 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
             Calendar c = Calendar.getInstance();
             c.setTime(date);
 
-            int startWeek = c.getWeekYear();
+            int startWeek = c.get(Calendar.WEEK_OF_YEAR);
 
-            groups[i] = new DbGroup(cohorts[i].getCohortIdentifier(), cohorts[i].getId().getValue(),null, students, startWeek);
+            groups[i] = new DbGroup(cohorts[i].getCohortIdentifier(), cohorts[i].getId().getValue(),data, students, startWeek);
         }
 
 
