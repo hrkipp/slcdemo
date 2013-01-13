@@ -26,10 +26,11 @@ public class LoadGroupActionHandler implements ActionHandler<loadGroup, loadGrou
     private Student.DAO studentDAO;
 
     @Inject
-    public LoadGroupActionHandler(Cohort.DAO cohortDAO, StudentCohortAssociation.DAO scaDAO, Staff.DAO staffDAO) {
+    public LoadGroupActionHandler(Cohort.DAO cohortDAO, StudentCohortAssociation.DAO scaDAO, Staff.DAO staffDAO, Student.DAO studentDAO) {
         this.cohortDAO = cohortDAO;
         this.scaDAO = scaDAO;
         this.staffDAO = staffDAO;
+        this.studentDAO = studentDAO;
     }
 
 

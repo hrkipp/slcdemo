@@ -1,4 +1,5 @@
 var group ="";
+var activeWeek = 0;
 $(document).ready(function(){
     group = window.location.search.substring(4,window.location.search.length);
     loadGroup();
@@ -123,7 +124,7 @@ function loadGroup(){
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);
-        renderSessions(mock);
+        renderSessions(response);
     });
 }
 function renderSessions(m){
@@ -137,13 +138,14 @@ function renderSessions(m){
     loadSession(m.sections[0]);
 
 }
+
 function addTab(m , index){
     console.log("adding tab "+index);
     var s = m.sections[index];
     var $tab = $("<div class='tab'><a href='#'>"+ s.name+"</a></div>");
     $(".lesson_objective").html(s.lessionObjective);
     $tab.click(function(){
-        console.log("click");
+        activeWeek = index;
         loadSession(s);
         $(".nav_custom").children().removeClass("activetab");
         $(this).addClass("activetab");
@@ -155,7 +157,7 @@ function loadSession(s){
     var $body = $(".body").html("");
     for(var i=0; i< s.data.length; i++){
         var point = s.data[i];
-        var $row = $("<li class='row'></li>");
+        var $row = $("<li class='row' data-id='"+point.id+"'></li>");
         $row.append("<div class='name'>"+point.name+"</div>");
         $row.append(buildProgress(point, i));
         $row.append(buildScore(point, i));
@@ -166,12 +168,24 @@ function loadSession(s){
 }
 function saveStudent(index){
     var $row = $(".row").eq(index);
+    var id = $(".row").attr("data-id");
     var score = $row.find(".row_score").val();
+        if(score.length == 0) score = null;
     var observation = $row.find(".row_observation").val();
     var progress = $row.find(".row_progress").val();
+    var data = {
+        cohort : group,
+        student: id,
+        score : score,
+        observation : observation,
+        progress: progress,
+        week : activeWeek
+    }
+    console.log("saving");
+    console.log(data);
     $.post("/dispatch",{
-        action: actions.SaveStudent,
-        data : "{score:"+score+",observation:"+observation+",progress:"+progress+"}"
+        action: actions.saveStudent,
+        data : JSON.stringify(data)
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);
