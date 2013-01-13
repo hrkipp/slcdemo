@@ -1,5 +1,4 @@
 $(document).ready(function(){
-//    loadMockDashboard();
     loadDashboard();
     $("#newcohort").click(function(){
         window.location = "NewGroup.html";

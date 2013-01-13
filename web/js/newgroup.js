@@ -60,6 +60,7 @@ function saveGroup(){
         },function(data){
             var response = jQuery.parseJSON(data);
             console.log(data);
+            window.location = "index.html";
         });
     var session_length = $("#session_length").val();
 }
