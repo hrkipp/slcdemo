@@ -27,19 +27,84 @@
             font-size: 13px;
         }
         .name{
-            width: 25%;
+            width: 20%;
         }
-        .progress{
+        .student_progress{
             width: 15%;
         }
+        .student_progress > select{
+            width: 100%;
+            box-sizing: border-box;
+        }
         .score{
-            width: 10%;
+            width: 15%;
+        }
+        .score > input{
+            width: 100%;
+            box-sizing: border-box;
+            height: 30px;
         }
         .observation{
              width: 50%;
         }
+        .observation > textarea{
+            width: 100%;
+            box-sizing: border-box;
+        }
         .row{
-
+            font-size: 0;
+            margin: 0;
+        }
+        .row > div{
+            display: inline-block;
+            vertical-align: top;
+            font-size: 13px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .group_description{
+            margin-top: -10px;
+            line-height: 20px;
+        }
+        .lesson_objective{
+            line-height: 20px;
+        }
+        .tab{
+            float: left;
+            padding: 8px 12px;
+            height: 20px;
+            border: solid 1px transparent;
+            border-bottom-color: #ccc;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            cursor: pointer;
+        }
+        .activetab{
+            border-color: #ccc;
+            border-bottom-color: white;
+            margin-bottom: -1px;
+        }
+        .tab.activetab{
+            cursor: default;
+        }
+        .tab.activetab:HOVER{
+            background: white;
+        }
+        .tab > a{
+            text-decoration: none;
+            lin-height: 20px;
+            padding: 8px 12px;
+            border: solid 1px transparent;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        .tab:HOVER{
+            background: #eee;
+        }
+        .nav_custom{
+            overflow: visible;
+            height: 37px;
+            border-bottom: solid 1px #ccc;
         }
     </style>
 </head>
@@ -62,26 +127,29 @@
     </div>
     <div class="container">
         <h1 id="group_name"></h1>
-        <h2 id="group_description"></h2>
-        <h3 id="lesson_objective"></h3>
-    </div>
+        <hr>
+        <h4 class="group_description">
+            <div><small>Cohort Goals</small></div>
+            <div id="group_description"></div>
+        </h4>
+        <h4 class="lesson_objective">
+            <div><small>Weekly Objective</small></div>
+            <div id="lesson_objective"></div>
+        </h4>
 
-    <div class="lesson_objective"></div>
-    <ul class="nav nav-tabs">
-        <li class="active">
-            <a href="#">Week 1</a>
-        </li>
-        <li><a href="#">Week 2</a></li>
-        <li><a href="#">Week 3</a></li>
-        <li><a href="#">Week 4</a></li>
-    </ul>
-    <ul class="table_heading">
-        <li class="name">Name</li>
-        <li class="progress">Progress</li>
-        <li class="score">Score</li>
-        <li class="observation">Observation</li>
-    </ul>
-    <div class="body"></div>
+        <div class="lesson_objective"></div>
+
+        <div class="nav_custom"></div>
+
+        <ul class="table_heading">
+            <li class="name">Name</li>
+            <li class="student_progress">Progress</li>
+            <li class="score">Score</li>
+            <li class="observation">Observation</li>
+        </ul>
+
+        <ul class="body"></ul>
+    </div>
 
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>

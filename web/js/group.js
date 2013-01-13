@@ -4,9 +4,9 @@ $(document).ready(function(){
 });
 function loadMockGroup(){
     var mock = {
-        name : "Group name",
+        name : "Math Intervention 1",
         username : "L Kim",
-        description : "description/goals",
+        description : "Have all students achieve an average or above profficency in multiplication",
         sections : [
             {
                 name :  "Week 1",
@@ -42,20 +42,20 @@ function loadMockGroup(){
                         name : "Student 1",
                         id : "id0",
                         score : "1",
-                        observation : "unable to complete",
-                        progress : "1"
+                        observation : "unable to complete 2",
+                        progress : "2"
                     },{
                         name : "Student 2",
                         id : "id1",
                         score : "3",
-                        observation : "average performance",
-                        progress : "3"
+                        observation : "average performance 2",
+                        progress : "4"
                     },{
                         name : "Student 3",
                         id : "id2",
                         score : "5",
-                        observation : "Excellent",
-                        progress : "5"
+                        observation : "Excellent 2",
+                        progress : "1"
                     }
                 ]
             },{
@@ -68,11 +68,11 @@ function loadMockGroup(){
                         id : "id0",
                         score : "1",
                         observation : "unable to complete",
-                        progress : "1"
+                        progress : "3"
                     },{
                         name : "Student 2",
                         id : "id1",
-                        score : "3",
+                        score : "5",
                         observation : "average performance",
                         progress : "3"
                     },{
@@ -80,7 +80,7 @@ function loadMockGroup(){
                         id : "id2",
                         score : "5",
                         observation : "Excellent",
-                        progress : "5"
+                        progress : "2"
                     }
                 ]
             }
@@ -98,29 +98,42 @@ function loadGroup(){
     });
 }
 function renderSessions(m){
-    $("#group_name")
-    $("#group_description")
-    $("#learning_objective")
+    $("#group_name").html(m.name);
+    $("#group_description").html(m.description);
+//    $("#lesson_objective").html(m.sections[0].lessonObjective);
+    for(var i=0;i< m.sections.length;i++){
+        addTab(m, i);
+    }
+    $(".nav_custom").children().eq(0).addClass("activetab");
+    loadSession(m.sections[0]);
+
 }
-function addSession(s){
-    var $tab = $("<li><a href='#'>"+ s.name+"</a></li>");
+function addTab(m , index){
+    console.log("adding tab "+index);
+    var s = m.sections[index];
+    var $tab = $("<div class='tab'><a href='#'>"+ s.name+"</a></div>");
     $(".lesson_objective").html(s.lessionObjective);
     $tab.click(function(){
-        loadSession(s.data);
+        console.log("click");
+        loadSession(s);
+        $(".nav_custom").children().removeClass("activetab");
+        $(this).addClass("activetab");
     });
-    $(".nav-tabs").append($tab);
+    $(".nav_custom").append($tab);
 }
 function loadSession(s){
-    var $body = $(".body");
+    console.log(s);
+    var $body = $(".body").html("");
     for(var i=0; i< s.data.length; i++){
         var point = s.data[i];
-        var $row = $("<ul class='row'></ul>");
-        $row.append("<li class='name'>"+point.name+"</li>");
+        var $row = $("<li class='row'></li>");
+        $row.append("<div class='name'>"+point.name+"</div>");
         $row.append(buildProgress(point, i));
         $row.append(buildScore(point, i));
         $row.append(buildObservation(point, i));
-
+        $body.append($row);
     }
+    $("#lesson_objective").html(s.lessonObjective);
 }
 function saveStudent(index){
     var $row = $(".row").eq(index);
@@ -136,14 +149,15 @@ function saveStudent(index){
     });
 }
 function buildScore(point, student){
-    var $score = $("<li class='score'><input type='number' class='row_score'></li>");
-    $score.val(point.score);
+    var $score = $("<div class='score'><input type='number' class='row_score'></div>");
+    $score.children().eq(0).val(point.score);
     $score.change(function(){
         saveStudent(student);
     })
+    return $score;
 }
 function buildObservation(point, student){
-    var $obs = $("<li><textarea class='row_observation'>"+ point.observation+"</textarea></li>");
+    var $obs = $("<div class='observation'><textarea class='row_observation'>"+ point.observation+"</textarea></div>");
     $obs.change(function(){
         saveStudent(student);
     });
@@ -158,5 +172,5 @@ function buildProgress(point, student){
     $p.change(function(){
        saveStudent(student);
     });
-    return "<li class='progress'>"+$p+"</li>";
+    return $("<div class='student_progress'></div>").append($p);
 }

@@ -43,6 +43,8 @@ function saveGroup(){
     });
     console.log(students);
     console.log(los);
+    console.log($("#start_date_picker").val());
+    console.log(new Date($("#start_date_picker").val()).getTime());
     var data = {
         name : $("#name").val(),
         description : $("#description").val(),

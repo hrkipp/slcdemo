@@ -18,24 +18,37 @@
       }
       .group_widget{
          display: inline-block;
-          margin-bottom: 10px;
+          margin-top: 10px;
+          margin-left: 5px;
+          position: relative;
+          padding: 0 5px 5px 5px;
           overflow:hidden;
-          border: solid 3px #ddd;
+          border-radius: 6px;
+          background: #3a87ad;
+          border: solid 1px #2E6C8A;
+      }
+      .group_widget:HOVER{
+          background: #4E93B5;
+          text-decoration: none;
+      }
+      .group_widget > .group_column:last-child{
+          border-right: solid 1px rgba(0,0,0,0.1);
       }
       .group_column{
           float: left;
           width: 100px;
-          border-top: solid 1px #eee;
-          border-left: solid 1px #eee;
+          border-top: solid 1px rgba(0,0,0,0.1);
+          border-left: solid 1px rgba(0,0,0,0.1);
           height:100%;
       }
       .group_cell{
           width: 100%;
           height: 20px;
-          border-bottom: solid 1px #eee;
+          background: rgba(255,255,255,0.05);
+          border-bottom: solid 1px rgba(0,0,0,0.1);
       }
       .progress{
-          background: #00A2FF;
+          background: rgba(255,255,255,0.6);
           height: 100%;
           border-radius: 0;
       }
@@ -43,6 +56,38 @@
           float: left;
           width: 100px;
           padding: 0 2px;
+          line-height: 21px;
+          color: white;
+          text-decoration: none;
+      }
+      .group_widget_name{
+          color: white;
+          text-decoration: none;
+      }
+      .weeks{
+          font-size: 0;
+          white-space: nowrap;
+          background: #eee;
+          padding: 5px 10px 5px 115px;
+          height: 20px;
+          line-height: 20px;
+      }
+      .weeks_adjust{
+          position: relative;
+      }
+      .week_cell{
+          display: inline-block;
+          font-size: 13px;
+          width: 101px;
+          text-align: center;
+      }
+      .current_week{
+          background: #dff0d8;
+          position: absolute;
+          top: 40px;
+          bottom: 0;
+          width: 100px;
+          z-index: -1;
       }
     </style>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -59,21 +104,21 @@
           <a class="brand" href="index.html">SLC Demo</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Dashboard</a></li>
+              <li><a href="#">Dashboard</a></li>
             </ul>
             <ul class="nav">
-                <li><a href="NewGroup.html">Create Cohort</a></li>
+                <li><button class="btn btn-success" id="newcohort">Create Cohort</button></li>
             </ul>
             <div id="username" class="username text-info"></div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
-    <div class="container">
-
-        <div id="groups_container"></div>
-    </div> <!-- /container -->
+    <div class="weeks">
+        <div class="weeks_adjust"></div>
+    </div>
+    <div id="groups_container"></div>
+    <div class="current_week"></div>
     </body>
     <!-- Le javascript
     ================================================== -->
