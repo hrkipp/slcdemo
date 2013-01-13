@@ -1,18 +1,13 @@
 $(document).ready(function(){
-    loadDashboard();
-    $("#login").click(function(){ login(); });
+
 });
 
-function login(){
-
-}
-function loadDashboard(){
+function loadGroup(){
     $.post("/dispatch",{
-        action: actions.loadDashboard,
+        action: actions.loadGroup,
         data : "{email : test}"
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);
     });
 }
-

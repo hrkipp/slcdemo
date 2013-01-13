@@ -16,7 +16,7 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>ffm.slc.guice.MyGuiceServletConfig</listener-class>
+        <listener-class>ffm.slc.guice.GuiceServletConfig</listener-class>
     </listener>
 
 </web-app>

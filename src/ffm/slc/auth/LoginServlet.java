@@ -29,9 +29,9 @@ public class LoginServlet extends HttpServlet {
 
 	@Inject
 	public LoginServlet(@Named("slc.api.secret") String apiSecret,
-						@Named("slc.api.key") String apiKey,
-						@Auth String auth_token)
-	{
+        @Named("slc.api.key") String apiKey,
+        @Auth String auth_token)
+        {
 		this.apiSecret = apiSecret;
 		this.apiKey = apiKey;
 		this.auth_token = auth_token;
@@ -67,8 +67,9 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				resp.sendRedirect(req.getRequestURI());
 			}
+		} else {
 
-		}
+        }
 	}
 
 }
