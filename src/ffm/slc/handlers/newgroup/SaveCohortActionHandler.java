@@ -8,13 +8,6 @@ import ffm.slc.model.*;
 
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Administrator
- * Date: 1/12/13
- * Time: 8:09 PM
- * To change this template use File | Settings | File Templates.
- */
 public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCohort.Result> {
 
     private Cohort.DAO cohortDAO;
@@ -51,7 +44,9 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
 
         cohort.setEducationOrg(schools[0].getId().getValue());
         cohort.setStaffId(new String[]{staff.getId().getValue()});
-
+        cohort.getCustom().setBeginDate(new Date(action.getStartDate() / 1000));
+        cohort.getCustom().setSessionLength(action.getNumOfWeeks());
+        cohort.getCustom().setLearningObjectives(action.getLeadingObjectives());
         String id = cohortDAO.save(cohort);
 
 
@@ -62,16 +57,18 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
 
         String scaId = stcaDAO.save(stca);
 
+        cohortDAO.saveCustom(cohort.getCustom(), id);
 
         for(String s : action.getStudents()){
             StudentCohortAssociation sca = new StudentCohortAssociation();
-            sca.setStudent(s);
-            sca.setCohort(id);
+            sca.setStudentid(s);
+            sca.setCohortId(id);
+            sca.setBeginDate(new Date(action.getStartDate()/1000));
+            sca.getCustom().setNotes(new String[action.getNumOfWeeks()]);
+            sca.getCustom().setScore(new Double[action.getNumOfWeeks()]);
+            sca.getCustom().setProgress(new int[action.getNumOfWeeks()]);
             scaDAO.save(sca);
         }
-
-
-
 
 
         return new SaveCohort.Result();

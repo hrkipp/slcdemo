@@ -22,6 +22,7 @@ public class StaffCohortAssociation extends Entity {
     private String staffId;
     private String cohortId;
     private Date beginDate;
+    private boolean studentRecordAccess = true;
     private String entityType = "staffCohortAssociation";
 
     public String getStaff() {

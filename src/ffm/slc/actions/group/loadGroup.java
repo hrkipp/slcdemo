@@ -9,17 +9,28 @@ import ffm.slc.dispatch.Action;
  * Time: 5:10 PM
  * To change this template use File | Settings | File Templates.
  */
-public class loadGroup implements Action {
+public class loadGroup implements Action<loadGroup.Result> {
     private String id;
 
     public loadGroup(String id) {
         this.id = id;
     }
 
-    public class Result implements ffm.slc.dispatch.Result{
+    public String getId() {
+        return id;
+    }
+
+    public static class Result implements ffm.slc.dispatch.Result{
         private String name;
         private String username;
         private String description;
         private Sections[] sections;
+
+        public Result(String name, String username, String description, Sections[] sections) {
+            this.name = name;
+            this.username = username;
+            this.description = description;
+            this.sections = sections;
+        }
     }
 }

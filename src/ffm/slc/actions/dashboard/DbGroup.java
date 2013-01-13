@@ -13,10 +13,14 @@ public class DbGroup {
     private String name;
     private String id;
     private int[][] sessions;
+    private String[] students;
+    private int startWeek;
 
-    public DbGroup(String name, String id, int[][] sessions) {
+    public DbGroup(String name, String id, int[][] sessions, String[] students, int startWeek) {
         this.name = name;
         this.id = id;
         this.sessions = sessions;
+        this.students = students;
+        this.startWeek = startWeek;
     }
 }

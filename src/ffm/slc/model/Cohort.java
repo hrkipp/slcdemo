@@ -26,7 +26,9 @@ public class Cohort extends Entity {
     private String cohortIdentifier;
     private String cohortDescription;
     private String educationOrgId;
+    transient private Custom custom = new Custom();
 //    private String[] staffIds;
+
     private String cohortType = CohortType.ACADEMIC_INTERVENTION.toString();
     private String entityType = "cohort";
 
@@ -65,6 +67,14 @@ public class Cohort extends Entity {
 //        this.staffIds = staffId;
     }
 
+    public Custom getCustom() {
+        return custom;
+    }
+
+    public void setCustom(Custom custom) {
+        this.custom = custom;
+    }
+
     public static class DAO {
 
         private final RestClient restClient;
@@ -84,25 +94,77 @@ public class Cohort extends Entity {
             List<String> locations = resp.getHeaders().get("Location");
             String loc = locations.get(0);
             loc = loc.split("/")[loc.split("/").length-1];
+
             return loc;
+        }
+
+        public boolean saveCustom(Custom custom, String cohort){
+            ClientResponse resp = restClient.postRelative("api/rest/v1/cohorts/{id}/custom".replace("{id}", cohort), gson.toJson(custom));
+            return true;
         }
 
         public Cohort[] getAll() {
 
-                Entity home = null;
-                if(sessionProvder.get().getAttribute("home") == null){
-                    home = gson.fromJson(restClient.getRelative("api/rest/v1/home"), Entity.class);
-                    sessionProvder.get().setAttribute("home", home);
-                }
-                home = (Entity) sessionProvder.get().getAttribute("home");
-                String ret = restClient.get(home.getLink("getCohorts"));
-                return gson.fromJson(ret, Cohort[].class);
+            Entity home = null;
+            if(sessionProvder.get().getAttribute("home") == null){
+                home = gson.fromJson(restClient.getRelative("api/rest/v1/home"), Entity.class);
+                sessionProvder.get().setAttribute("home", home);
+            }
+            home = (Entity) sessionProvder.get().getAttribute("home");
+            String ret = restClient.get(home.getLink("getCohorts"));
+            Cohort[] cohorts = gson.fromJson(ret, Cohort[].class);
+            for(Cohort c : cohorts){
+                c.setCustom(gson.fromJson(restClient.get(c.getLink("custom")), Custom.class));
+            }
+            return cohorts;
         }
 
         public Cohort[] getAll(String staff) {
 
             String ret = restClient.getRelative("api/rest/v1/staff/{id}/staffCohortAssociations/cohorts".replace("{id}", staff));
-            return gson.fromJson(ret, Cohort[].class);
+            Cohort[] cohorts = gson.fromJson(ret, Cohort[].class);
+            for(Cohort c : cohorts){
+                c.setCustom(gson.fromJson(restClient.get(c.getLink("custom")), Custom.class));
+            }
+            return cohorts;
+        }
+
+        public Cohort get(String id){
+            String req = "api/rest/v1/cohorts/{id}".replace("{id}", id);
+            Cohort cohort = gson.fromJson(restClient.getRelative(req), Cohort.class);
+            cohort.setCustom(gson.fromJson(restClient.get(cohort.getLink("custom")), Custom.class));
+            return cohort;
+        }
+
+    }
+
+    public static class Custom {
+        private String[] learningObjectives;
+        private int sessionLength;
+        private Date beginDate;
+
+        public String[] getLearningObjectives() {
+            return learningObjectives;
+        }
+
+        public void setLearningObjectives(String[] learningObjectives) {
+            this.learningObjectives = learningObjectives;
+        }
+
+        public int getSessionLength() {
+            return sessionLength;
+        }
+
+        public void setSessionLength(int sessionLength) {
+            this.sessionLength = sessionLength;
+        }
+
+        public Date getBeginDate() {
+            return beginDate;
+        }
+
+        public void setBeginDate(Date beginDate) {
+            this.beginDate = beginDate;
         }
     }
 

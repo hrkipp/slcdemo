@@ -13,4 +13,12 @@ public class DataPoint {
     private int progress;
     private String observation;
     private Double score;
+
+    public DataPoint(String name, String id, int progress, String observation, Double score) {
+        this.name = name;
+        this.id = id;
+        this.progress = progress;
+        this.observation = observation;
+        this.score = score;
+    }
 }

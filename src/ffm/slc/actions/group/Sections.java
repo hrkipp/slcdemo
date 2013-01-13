@@ -9,7 +9,12 @@ package ffm.slc.actions.group;
  */
 public class Sections {
     private String name;
-    private String id;
     private String lessionObjective;
     private DataPoint[] data;
+
+    public Sections(String name, String lessionObjective, DataPoint[] data) {
+        this.name = name;
+        this.lessionObjective = lessionObjective;
+        this.data = data;
+    }
 }

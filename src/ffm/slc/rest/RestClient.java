@@ -71,4 +71,17 @@ public class RestClient {
 		return res.post(ClientResponse.class, json);
 
 	}
+
+    public ClientResponse post(String uri, String json) {
+
+        if (!isAuthorized()) {
+            return null;
+        }
+
+        WebResource.Builder res = client.resource(uri).accept("application/vnd.slc+json")
+                .header("Authorization", "bearer " + sessionProvider.get().getAttribute(auth_token)).header("Content-Type", "application/vnd.slc+json");
+
+        return res.post(ClientResponse.class, json);
+
+    }
 }

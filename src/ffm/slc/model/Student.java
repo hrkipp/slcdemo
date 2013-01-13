@@ -45,6 +45,9 @@ public class Student extends Entity {
             return gson.fromJson(restClient.getRelative(uri), Student[].class);
         }
 
+        public Student get(String id){
+            return null;
+        }
 
 
 

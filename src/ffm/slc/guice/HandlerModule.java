@@ -1,8 +1,11 @@
 package ffm.slc.guice;
 
+import com.google.code.morphia.Datastore;
+import com.google.code.morphia.Morphia;
 import com.google.gson.*;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
+import com.mongodb.Mongo;
 import ffm.slc.model.resources.IntegerResource;
 import ffm.slc.model.resources.StringResource;
 import ffm.slc.rest.Auth;
@@ -75,6 +78,19 @@ public class HandlerModule extends AbstractModule {
 					}
 				}).create());
 
+        try {
+
+            Mongo mongo = new Mongo("localhost", Integer.parseInt((String)properties.get("db.port")));
+            Morphia morphia = new Morphia();
+
+            bind(Mongo.class).toInstance(mongo);
+            bind(Morphia.class).toInstance(morphia);
+
+            bind(Datastore.class).toInstance(morphia.createDatastore(mongo, "slc"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 	}
 }

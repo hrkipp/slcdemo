@@ -2,10 +2,13 @@ package ffm.slc.model;
 
 import com.google.gson.Gson;
 import com.google.inject.Provider;
+import com.sun.jersey.api.client.ClientResponse;
 import ffm.slc.rest.RestClient;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,23 +19,42 @@ import javax.servlet.http.HttpSession;
  */
 public class StudentCohortAssociation extends Entity {
 
-    private String student;
-    private String cohort;
+    private String studentId;
+    private Date beginDate;
+    private String cohortId;
+    private String entityType = "studentCohortAssociation";
+    transient private Custom custom = new Custom();
 
-    public String getStudent() {
-        return student;
+    public String getStudentid() {
+        return studentId;
     }
 
-    public void setStudent(String student) {
-        this.student = student;
+    public void setStudentid(String studentid) {
+        this.studentId = studentid;
     }
 
-    public String getCohort() {
-        return cohort;
+    public String getCohortId() {
+        return cohortId;
     }
 
-    public void setCohort(String cohort) {
-        this.cohort = cohort;
+    public void setCohortId(String cohortId) {
+        this.cohortId = cohortId;
+    }
+
+    public Custom getCustom() {
+        return custom;
+    }
+
+    public void setCustom(Custom custom) {
+        this.custom = custom;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
     public static class DAO {
@@ -49,10 +71,64 @@ public class StudentCohortAssociation extends Entity {
         }
 
         public String save(StudentCohortAssociation sca){
-            return "";
+            String json = gson.toJson(sca);
+            ClientResponse resp = restClient.postRelative("api/rest/v1/studentCohortAssociations",json);
+            List<String> locations = resp.getHeaders().get("Location");
+            String loc = locations.get(0);
+            loc = loc.split("/")[loc.split("/").length-1];
+            List<String> cusom = restClient.post(locations.get(0)+"/custom", gson.toJson(sca.getCustom())).getHeaders().get("Location");
+            System.out.println(cusom);
+            return loc;
         }
 
 
+        public StudentCohortAssociation get(String student, String cohort) {
+            String req = "api/rest/v1/cohorts/{id1}/studentCohortAssociations/?studentId={id2}";
+            req = req.replace("{id1", cohort).replace("{id2}", student);
+            StudentCohortAssociation sca = gson.fromJson(restClient.getRelative(req), StudentCohortAssociation.class);
+            sca.setCustom(gson.fromJson(restClient.get(sca.getLink("custom")), Custom.class));
+            return gson.fromJson(restClient.getRelative(req), StudentCohortAssociation.class);
+        }
+
+        public StudentCohortAssociation[]  getAll(Cohort cohort){
+            String req = "api/rest/v1/cohorts/{id}/studentCohortAssociations".replace("{id}", cohort.getId().getValue());
+            StudentCohortAssociation[] scas = gson.fromJson(restClient.getRelative(req), StudentCohortAssociation[].class);
+            for(StudentCohortAssociation c : scas){
+                c.setCustom(gson.fromJson(restClient.get(c.getLink("custom")), Custom.class));
+            }
+            return gson.fromJson(restClient.getRelative(req), StudentCohortAssociation[].class);
+        }
+    }
+
+    public static class Custom {
+        private String[] notes;
+        private int[] progress;
+        private Double[] score;
+
+        public String[] getNotes() {
+            return notes;
+        }
+
+        public void setNotes(String[] notes) {
+            this.notes = notes;
+        }
+
+
+        public int[] getProgress() {
+            return progress;
+        }
+
+        public void setProgress(int[] progress) {
+            this.progress = progress;
+        }
+
+        public Double[] getScore() {
+            return score;
+        }
+
+        public void setScore(Double[] score) {
+            this.score = score;
+        }
     }
 
 }
