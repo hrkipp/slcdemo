@@ -1,6 +1,5 @@
 $(document).ready(function(){
     loadSections();
-    $('#time_picker').timepicker({defaultTime: '09:00 AM'}); 
     $("#start_date_picker").datepicker();
     $("#end_date_picker").datepicker();
 });
