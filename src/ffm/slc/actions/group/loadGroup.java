@@ -1,6 +1,8 @@
 package ffm.slc.actions.group;
 
 import ffm.slc.dispatch.Action;
+import ffm.slc.dispatch.Handler;
+import ffm.slc.handlers.group.LoadGroupActionHandler;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,6 +11,7 @@ import ffm.slc.dispatch.Action;
  * Time: 5:10 PM
  * To change this template use File | Settings | File Templates.
  */
+@Handler(LoadGroupActionHandler.class)
 public class loadGroup implements Action<loadGroup.Result> {
     private String id;
 
