@@ -21,9 +21,10 @@ public class Student extends Entity {
 
     public Student(Name name) {
         this.name = name;
+    }
 
-
-
+    public Name getName() {
+        return name;
     }
 
     public static class DAO {

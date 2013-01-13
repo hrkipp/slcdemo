@@ -8,19 +8,24 @@ import ffm.slc.model.Student;
 
 public class loadStudentsActionHandler implements ActionHandler<loadStudents, loadStudents.Result> {
 
-    private Student.DAO students;
+    private Student.DAO studentDAO;
 
     @Inject
-    public loadStudentsActionHandler(Student.DAO students) {
-        this.students = students;
+    public loadStudentsActionHandler(Student.DAO studentDAO) {
+        this.studentDAO = studentDAO;
     }
 
     @Override
     public loadStudents.Result execute(loadStudents action) throws ActionException {
 
+        Student[] students = studentDAO.getAll(action.getSession());
 
+        ffm.slc.actions.newgroup.Student[] dtos = new ffm.slc.actions.newgroup.Student[students.length];
 
+        for(int i = 0; i<students.length;i++){
+            dtos[i] = new ffm.slc.actions.newgroup.Student(students[i].getName().getFullame(), students[i].getId().getValue());
+        }
 
-        return null;
+        return new loadStudents.Result(dtos);
     }
 }

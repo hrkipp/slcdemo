@@ -5,13 +5,6 @@ import ffm.slc.dispatch.Handler;
 import ffm.slc.dispatch.Result;
 import ffm.slc.handlers.newgroup.loadStudentsActionHandler;
 
-/**
- * Created with IntelliJ IDEA.
- * User: TJ
- * Date: 1/12/13
- * Time: 5:18 PM
- * To change this template use File | Settings | File Templates.
- */
 @Handler(loadStudentsActionHandler.class)
 public class loadStudents implements Action<loadStudents.Result> {
     private String session;
@@ -28,7 +21,7 @@ public class loadStudents implements Action<loadStudents.Result> {
         this.session = session;
     }
 
-    public class Result implements ffm.slc.dispatch.Result{
+    public static class Result implements ffm.slc.dispatch.Result{
         private Student[] students;
 
         public Result(Student[] students) {
