@@ -2,11 +2,13 @@ package ffm.slc.model;
 
 import com.google.gson.Gson;
 import com.google.inject.Provider;
+import com.sun.jersey.api.client.ClientResponse;
 import ffm.slc.rest.RestClient;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,25 +19,25 @@ import java.util.Date;
  */
 public class StaffCohortAssociation extends Entity {
 
-    private String staff;
-    private String cohort;
+    private String staffId;
+    private String cohortId;
     private Date beginDate;
-    private Date endDate;
+    private String entityType = "staffCohortAssociation";
 
     public String getStaff() {
-        return staff;
+        return staffId;
     }
 
     public void setStaff(String staff) {
-        this.staff = staff;
+        this.staffId = staff;
     }
 
     public String getCohort() {
-        return cohort;
+        return cohortId;
     }
 
     public void setCohort(String cohort) {
-        this.cohort = cohort;
+        this.cohortId = cohort;
     }
 
     public Date getBeginDate() {
@@ -44,14 +46,6 @@ public class StaffCohortAssociation extends Entity {
 
     public void setBeginDate(Date beginDate) {
         this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public static class DAO {
@@ -68,7 +62,12 @@ public class StaffCohortAssociation extends Entity {
         }
 
         public String save(StaffCohortAssociation sca){
-            return "";
+            String json = gson.toJson(sca);
+            ClientResponse resp = restClient.postRelative("api/rest/v1/staffCohortAssociations",json);
+            List<String> locations = resp.getHeaders().get("Location");
+            String loc = locations.get(0);
+            loc = loc.split("/")[loc.split("/").length-1];
+            return loc;
         }
 
 

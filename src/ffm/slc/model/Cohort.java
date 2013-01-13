@@ -3,6 +3,8 @@ package ffm.slc.model;
 import com.google.gson.Gson;
 import com.google.inject.Provider;
 import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.core.util.StringIgnoreCaseKeyComparator;
+import ffm.slc.model.enums.CohortType;
 import ffm.slc.model.resources.CohortDescription;
 import ffm.slc.model.resources.CohortIdentifier;
 import ffm.slc.rest.RestClient;
@@ -22,10 +24,10 @@ public class Cohort extends Entity {
 
     private String cohortIdentifier;
     private String cohortDescription;
-
-    public Cohort() {
-
-    }
+    private String educationOrgId;
+//    private String[] staffIds;
+    private String cohortType = CohortType.ACADEMIC_INTERVENTION.toString();
+    private String entityType = "cohort";
 
     public String getCohortDescription() {
         return cohortDescription;
@@ -43,6 +45,22 @@ public class Cohort extends Entity {
         this.cohortIdentifier = cohortIdentifier;
     }
 
+    public String getEducationOrg() {
+        return educationOrgId;
+    }
+
+    public void setEducationOrg(String educationOrgId) {
+        this.educationOrgId = educationOrgId;
+    }
+
+//    public String[] getStaffId() {
+////        return staffIds;
+//    }
+
+    public void setStaffId(String[] staffId) {
+//        this.staffIds = staffId;
+    }
+
     public static class DAO {
 
         private final RestClient restClient;
@@ -57,11 +75,12 @@ public class Cohort extends Entity {
         }
 
         public String save(Cohort cohort) {
-
-            ClientResponse resp = restClient.postRelative("api/rest/v1/cohorts", gson.toJson(cohort));
+            String json = gson.toJson(cohort);
+            ClientResponse resp = restClient.postRelative("api/rest/v1/cohorts",json);
            List<String> locations = resp.getHeaders().get("Location");
-            System.out.println(locations);
-            return null;
+            String loc = locations.get(0);
+            loc = loc.split("/")[loc.split("/").length-1];
+            return loc;
         }
 
         public Cohort[] getAll() {
@@ -74,6 +93,12 @@ public class Cohort extends Entity {
                 home = (Entity) sessionProvder.get().getAttribute("home");
                 String ret = restClient.get(home.getLink("getCohorts"));
                 return gson.fromJson(ret, Cohort[].class);
+        }
+
+        public Cohort[] getAll(String staff) {
+
+            String ret = restClient.getRelative("api/rest/v1/staff/{id}/staffCohortAssociations/cohorts".replace("{id}", staff));
+            return gson.fromJson(ret, Cohort[].class);
         }
     }
 
