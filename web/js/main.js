@@ -7,7 +7,7 @@ function login(){
 
 }
 function loadDashboard(){
-    $.post("/dispatch",{
+    $.get("/dispatch",{
         action: actions.loadDashboard,
         data : "{email : test}"
     },function(data){
