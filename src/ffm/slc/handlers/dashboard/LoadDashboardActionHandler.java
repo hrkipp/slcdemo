@@ -58,7 +58,7 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
 
             StudentCohortAssociation[] scas = scaDAO.getAll(cohorts[i]);
 
-            int[][] data = new int[scas.length][cohorts[i].getCustom().getSessionLength()];
+            int[][] data = new int[cohorts[i].getCustom().getSessionLength()][scas.length];
 
             String[] students = new String[scas.length];
 
@@ -68,7 +68,7 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
                 students[j] = s.getName().getFirstName()+s.getName().getLastSurname().getValue();
 
                 for(int k = 0; k<cohorts[i].getCustom().getSessionLength();k++){
-                    data[j][k] = scas[j].getCustom().getProgress()[k];
+                    data[k][j] = scas[j].getCustom().getProgress()[k];
                 }
             }
 
