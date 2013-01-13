@@ -1,5 +1,13 @@
 $(document).ready(function(){
+    var datepicker;
+
+    $('#time_picker').timepicker(); 
+    datepicker = $('#start_date_picker');
+    datepicker.datepicker();
+    datepicker = $('#end_date_picker');
+    datepicker.datepicker();
 });
+
 function loadStudents(){
     $.post("/dispatch",{
         action: actions.loadStudents,
