@@ -1,5 +1,6 @@
 package ffm.slc.handlers.newgroup;
 
+import com.google.inject.Inject;
 import ffm.slc.actions.newgroup.SaveCohort;
 import ffm.slc.dispatch.ActionException;
 import ffm.slc.dispatch.ActionHandler;
@@ -21,7 +22,16 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
 
     private Cohort.DAO cohortDAO;
     private Staff.DAO staffDAO;
+    private StaffCohortAssociation.DAO stcaDAO;
+    private StudentCohortAssociation.DAO scaDAO;
 
+    @Inject
+    public SaveCohortActionHandler(Cohort.DAO cohortDAO, Staff.DAO staffDAO, StaffCohortAssociation.DAO stcaDAO, StudentCohortAssociation.DAO scaDAO) {
+        this.cohortDAO = cohortDAO;
+        this.staffDAO = staffDAO;
+        this.stcaDAO = stcaDAO;
+        this.scaDAO = scaDAO;
+    }
 
 
     @Override
@@ -32,26 +42,32 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
         cohort.setCohortDescription(action.getDescription());
         cohort.setCohortIdentifier(action.getName());
 
+        //TODO MORE DATA!
+
+
         String id = cohortDAO.save(cohort);
 
         Staff staff = staffDAO.getCurrent();
 
         StaffCohortAssociation stca = new StaffCohortAssociation();
         stca.setBeginDate(new Date(action.getStartDate()));
-        stca.setEndDate(new Date(action.getStartDate()+(60*60*24*7*action.getNumOfWeeks())));
+        stca.setEndDate(new Date(action.getStartDate() + (60 * 60 * 24 * 7 * action.getNumOfWeeks())));
         stca.setCohort(id);
         stca.setStaff(staff.getId().getValue());
+        stcaDAO.save(stca);
+
 
         for(String s : action.getStudents()){
             StudentCohortAssociation sca = new StudentCohortAssociation();
             sca.setStudent(s);
             sca.setCohort(id);
+            scaDAO.save(sca);
         }
 
 
 
 
 
-        return null;
+        return new SaveCohort.Result();
     }
 }

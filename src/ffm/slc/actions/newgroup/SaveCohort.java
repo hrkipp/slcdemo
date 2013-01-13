@@ -62,7 +62,7 @@ public class SaveCohort implements Action<SaveCohort.Result> {
         this.numOfWeeks = numOfWeeks;
     }
 
-    public class Result implements ffm.slc.dispatch.Result{
+    public static class Result implements ffm.slc.dispatch.Result{
 
     }
 }
