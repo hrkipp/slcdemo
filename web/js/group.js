@@ -34,24 +34,33 @@ function loadSession(s){
 }
 function saveStudent(index){
     var $row = $(".row").eq(index);
-
+    var score = $row.find(".row_score").val();
+    var observation = $row.find(".row_observation").val();
+    var progress = $row.find(".row_progress").val();
+    $.post("/dispatch",{
+        action: actions.SaveStudent,
+        data : "{score:"+score+",observation:"+observation+",progress:"+progress+"}"
+    },function(data){
+        var response = jQuery.parseJSON(data);
+        console.log(data);
+    });
 }
 function buildScore(point, student){
-    var $score = $("<li class='score'><input type='number'></li>");
+    var $score = $("<li class='score'><input type='number' class='row_score'></li>");
     $score.val(point.score);
     $score.change(function(){
         saveStudent(student);
     })
 }
 function buildObservation(point, student){
-    var $obs = $("<li><textarea>"+ point.observation+"</textarea></li>");
+    var $obs = $("<li><textarea class='row_observation'>"+ point.observation+"</textarea></li>");
     $obs.change(function(){
         saveStudent(student);
     });
     return $obs;
 }
 function buildProgress(point, student){
-    var $p = $("<select></select>");
+    var $p = $("<select class='row_progress'></select>");
     for(var i=0; i<6; i++){
         $p.append("<option value='"+i+"'>"+i+"</option>");
     }
