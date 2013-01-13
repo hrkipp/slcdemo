@@ -23,8 +23,9 @@ function saveGroup(){
         name : $("#name").val(),
         description : $("#description").val(),
         successCondition : $("#success_condition").val(),
-        students : $(""),
-        startDate : $("#start_date_picker").val(),
+
+        <!--students : [], -->
+        <!--startDate : $("#start_date_picker").val(), -->
         numOfWeeks : $("#num_weeks").val()
     }
         $.post("/dispatch",{

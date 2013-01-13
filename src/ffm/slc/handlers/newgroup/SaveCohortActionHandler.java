@@ -4,10 +4,7 @@ import com.google.inject.Inject;
 import ffm.slc.actions.newgroup.SaveCohort;
 import ffm.slc.dispatch.ActionException;
 import ffm.slc.dispatch.ActionHandler;
-import ffm.slc.model.Cohort;
-import ffm.slc.model.Staff;
-import ffm.slc.model.StaffCohortAssociation;
-import ffm.slc.model.StudentCohortAssociation;
+import ffm.slc.model.*;
 
 import java.util.Date;
 
@@ -24,13 +21,15 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
     private Staff.DAO staffDAO;
     private StaffCohortAssociation.DAO stcaDAO;
     private StudentCohortAssociation.DAO scaDAO;
+    private School.DAO schoolDAO;
 
     @Inject
-    public SaveCohortActionHandler(Cohort.DAO cohortDAO, Staff.DAO staffDAO, StaffCohortAssociation.DAO stcaDAO, StudentCohortAssociation.DAO scaDAO) {
+    public SaveCohortActionHandler(Cohort.DAO cohortDAO, Staff.DAO staffDAO, StaffCohortAssociation.DAO stcaDAO, StudentCohortAssociation.DAO scaDAO, School.DAO schoolDAO) {
         this.cohortDAO = cohortDAO;
         this.staffDAO = staffDAO;
         this.stcaDAO = stcaDAO;
         this.scaDAO = scaDAO;
+        this.schoolDAO = schoolDAO;
     }
 
 
@@ -45,16 +44,24 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
         //TODO MORE DATA!
 
 
-        String id = cohortDAO.save(cohort);
 
         Staff staff = staffDAO.getCurrent();
 
+        School[] schools = schoolDAO.get(staff);
+
+        cohort.setEducationOrg(schools[0].getId().getValue());
+
+        cohort.setStaffId(new String[]{staff.getId().getValue()});
+
+        String id = cohortDAO.save(cohort);
+
+
         StaffCohortAssociation stca = new StaffCohortAssociation();
-        stca.setBeginDate(new Date(action.getStartDate()));
-        stca.setEndDate(new Date(action.getStartDate() + (60 * 60 * 24 * 7 * action.getNumOfWeeks())));
+        stca.setBeginDate(new Date());
         stca.setCohort(id);
         stca.setStaff(staff.getId().getValue());
-        stcaDAO.save(stca);
+
+        String scaId = stcaDAO.save(stca);
 
 
         for(String s : action.getStudents()){

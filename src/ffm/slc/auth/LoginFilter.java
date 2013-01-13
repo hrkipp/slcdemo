@@ -72,6 +72,7 @@ public class LoginFilter implements Filter {
             Token accessToken = service.getAccessToken(null, verifier);
             session.setAttribute(auth_token, accessToken.getToken());
             Object entryUrl = session.getAttribute(ENTRY_URL);
+            System.out.println(accessToken.getToken());
             if (entryUrl != null) {
                 ((HttpServletResponse)resp).sendRedirect(entryUrl.toString());
             } else {

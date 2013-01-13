@@ -1,7 +1,10 @@
 package ffm.slc.actions.newgroup;
 
 import ffm.slc.dispatch.Action;
+import ffm.slc.dispatch.Handler;
+import ffm.slc.handlers.newgroup.SaveCohortActionHandler;
 
+@Handler(SaveCohortActionHandler.class)
 public class SaveCohort implements Action<SaveCohort.Result> {
     private String name;
     private String description;

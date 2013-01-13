@@ -35,7 +35,7 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
 
         String name = staff.getName().getFullame();
 
-        Cohort[] cohorts = cohortDAO.getAll();
+        Cohort[] cohorts = cohortDAO.getAll(staff.getId().getValue());
 
         DbGroup[] groups = new DbGroup[cohorts.length];
         for(int i = 0; i<cohorts.length;i++){
