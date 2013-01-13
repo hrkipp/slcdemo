@@ -1,6 +1,6 @@
 $(document).ready(function(){
-//   loadGroup();
-    loadMockGroup();
+   loadGroup();
+//    loadMockGroup();
 });
 function loadMockGroup(){
     var mock = {
@@ -120,6 +120,7 @@ function loadGroup(){
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);
+        renderSessions(mock);
     });
 }
 function renderSessions(m){

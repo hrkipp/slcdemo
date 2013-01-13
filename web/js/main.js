@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    loadMockDashboard();
-    //loadDashboard();
+    loadDashboard();
     $("#newcohort").click(function(){
         window.location = "NewGroup.html";
     });
@@ -37,7 +36,6 @@ function loadDashboard(){
         console.log(data);
         var response = jQuery.parseJSON(data);
         console.log(response);
-        alert(response);
         renderDashboard(response);
     });
 }function renderDashboard(d){
