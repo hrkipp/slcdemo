@@ -77,6 +77,8 @@ public class LoginFilter implements Filter {
             } else {
                 ((HttpServletResponse)resp).sendRedirect(((HttpServletRequest) req).getRequestURI());
             }
+        }else{
+            filterChain.doFilter(req, resp);
         }
     }
 

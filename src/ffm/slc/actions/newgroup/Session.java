@@ -10,4 +10,9 @@ package ffm.slc.actions.newgroup;
 public class Session {
     private String name;
     private String id;
+
+    public Session(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
 }

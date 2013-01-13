@@ -3,9 +3,9 @@ $(document).ready(function(){
 });
 
 function loadDashboard(){
-    $.get("/dispatch",{
-        action: actions.loadDashboard,
-        data : "{email : test}"
+    $.post("/dispatch",{
+        action: actions.loadSessions,
+        data : ""
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);

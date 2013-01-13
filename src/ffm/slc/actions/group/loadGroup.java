@@ -13,6 +13,10 @@ import ffm.slc.dispatch.Result;
 public class loadGroup implements Action {
     private String id;
 
+    public loadGroup(String id) {
+        this.id = id;
+    }
+
     public class Result implements ffm.slc.dispatch.Result{
         private String name;
         private String description;

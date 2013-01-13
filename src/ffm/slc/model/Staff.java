@@ -1,12 +1,14 @@
 package ffm.slc.model;
 
 import com.google.gson.Gson;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import ffm.slc.model.enums.SexType;
 import ffm.slc.model.resources.UniqueStateIdentifier;
 import ffm.slc.rest.RestClient;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 public class Staff {
@@ -62,15 +64,25 @@ public class Staff {
 
 		private final RestClient restClient;
 		private final Gson gson;
+        private Provider<HttpSession> sessionProvder;
 
 		@Inject
-		public DAO(RestClient restClient, Gson gson){
+		public DAO(RestClient restClient, Gson gson, Provider<HttpSession> sessionProvder){
 			this.restClient = restClient;
 			this.gson = gson;
-		}
+            this.sessionProvder = sessionProvder;
+        }
 
 		public Staff getCurrent() {
-			return gson.fromJson(restClient.getRelative("api/rest/v1/staff"), Staff.class);
+
+            Entity home = null;
+            if(sessionProvder.get().getAttribute("home") == null){
+                home = gson.fromJson(restClient.getRelative("api/rest/v1/home"), Entity.class);
+                sessionProvder.get().setAttribute("home", home);
+            }
+            home = (Entity) sessionProvder.get().getAttribute("home");
+            String ret = restClient.get(home.getLink("self"));
+			return gson.fromJson(ret, Staff.class);
 		}
 	}
 

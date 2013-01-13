@@ -47,35 +47,6 @@ public class DispatchServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession();
-
-        OAuthService service = new ServiceBuilder().
-                provider(SlcApi.class).
-                callback(req.getRequestURL().toString()).
-                apiKey(apiKey).apiSecret(apiSecret).
-                build();
-
-        Object token = session.getAttribute(auth_token);
-
-        if (token == null && req.getParameter(OAUTH_CODE) == null) {
-
-            session.setAttribute(ENTRY_URL, req.getRequestURL());
-            String authUrl = service.getAuthorizationUrl(null);
-            resp.sendRedirect(authUrl);
-
-        } else if (token == null && req.getParameter(OAUTH_CODE) != null) {
-
-            Verifier verifier = new Verifier(req.getParameter(OAUTH_CODE));
-            Token accessToken = service.getAccessToken(null, verifier);
-            session.setAttribute(auth_token, accessToken.getToken());
-            Object entryUrl = session.getAttribute(ENTRY_URL);
-            if (entryUrl != null) {
-                resp.sendRedirect(entryUrl.toString());
-            } else {
-                resp.sendRedirect(req.getRequestURI());
-            }
-        } else {
-
             String actionName = req.getParameter("action");
 
             String json = req.getParameter("data");
@@ -90,7 +61,7 @@ public class DispatchServlet extends HttpServlet {
 
             Action action = gson.fromJson(json, actionClass);
 
-            Class<? extends ActionHandler> actionHandlerClass = action.getClass().getAnnotation(Handler.class).value();
+            Class<? extends ActionHandler> actionHandlerClass = actionClass.getAnnotation(Handler.class).value();
 
             ActionHandler actionHandler = injector.getInstance(actionHandlerClass);
 
@@ -102,7 +73,6 @@ public class DispatchServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-        }
     }
 
 
