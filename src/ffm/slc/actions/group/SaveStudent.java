@@ -15,13 +15,11 @@ import ffm.slc.handlers.group.SaveStudentActionHandler;
 @Handler(SaveStudentActionHandler.class)
 public class SaveStudent implements Action<SaveStudent.Result> {
     private String cohort;
-        private String session;
-        private String student;
-        private String name;
-        private int progress;
-        private double score;
-        private int week;
-        private String observation;
+    private String student;
+    private int progress;
+    private double score;
+    private int week;
+    private String observation;
 
     public SaveStudent() {
     }
@@ -30,16 +28,9 @@ public class SaveStudent implements Action<SaveStudent.Result> {
         return cohort;
     }
 
-    public String getSession() {
-        return session;
-    }
 
     public String getStudent() {
         return student;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getProgress() {

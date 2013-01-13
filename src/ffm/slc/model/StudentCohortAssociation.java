@@ -83,7 +83,7 @@ public class StudentCohortAssociation extends Entity {
 
 
         public StudentCohortAssociation get(String student, String cohort) {
-            String req = "api/rest/v1/cohorts/{id1}/studentCohortAssociations/?studentId={id2}";
+            String req = "api/rest/v1/studentCohortAssociations/?studentId={id2}";
             req = req.replace("{id1}", cohort).replace("{id2}", student);
             StudentCohortAssociation sca = ((StudentCohortAssociation[])gson.fromJson(restClient.getRelative(req), StudentCohortAssociation[].class))[0];
             sca.setCustom(gson.fromJson(restClient.get(sca.getLink("custom")), Custom.class));

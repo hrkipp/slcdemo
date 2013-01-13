@@ -58,6 +58,6 @@ public class Name {
 	}
 
 	public String getFullame() {
-		return personalTitlePrefix+" "+firstName+" "+lastSurname;
+		return (personalTitlePrefix!=null?personalTitlePrefix:"")+" "+firstName+" "+lastSurname;
 	}
 }
