@@ -39,14 +39,16 @@ function saveGroup(){
     });
     var students = new Array();
     $("#student_list").find("input:checked").each(function(){
-        students.push($(this).val());
+        students.push($(this).attr('data-id'));
     });
+    console.log(students);
+    console.log(los);
     var data = {
         name : $("#name").val(),
         description : $("#description").val(),
         successCondition : $("#success_condition").val(),
         students : students,
-        startDate : $("#start_date_picker").val(),
+        startDate : new Date($("#start_date_picker").val()).getTime(),
         numOfWeeks : $("#num_weeks").val(),
         learningObjectives : los
     }
