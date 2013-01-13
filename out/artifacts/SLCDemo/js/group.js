@@ -1,7 +1,93 @@
 $(document).ready(function(){
-
+//   loadGroup();
+    loadMockGroup();
 });
-
+function loadMockGroup(){
+    var mock = {
+        name : "Group name",
+        username : "L Kim",
+        description : "description/goals",
+        sections : [
+            {
+                name :  "Week 1",
+                id : "id1",
+                lessonObjective: "do better",
+                data : [
+                    {
+                        name : "Student 1",
+                        id : "id0",
+                        score : "1",
+                        observation : "unable to complete",
+                        progress : "1"
+                    },{
+                        name : "Student 2",
+                        id : "id1",
+                        score : "3",
+                        observation : "average performance",
+                        progress : "3"
+                    },{
+                        name : "Student 3",
+                        id : "id2",
+                        score : "5",
+                        observation : "Excellent",
+                        progress : "5"
+                    }
+                ]
+            },{
+                name :  "Week 2",
+                id : "id1",
+                lessonObjective: "do better again",
+                data : [
+                    {
+                        name : "Student 1",
+                        id : "id0",
+                        score : "1",
+                        observation : "unable to complete",
+                        progress : "1"
+                    },{
+                        name : "Student 2",
+                        id : "id1",
+                        score : "3",
+                        observation : "average performance",
+                        progress : "3"
+                    },{
+                        name : "Student 3",
+                        id : "id2",
+                        score : "5",
+                        observation : "Excellent",
+                        progress : "5"
+                    }
+                ]
+            },{
+                name :  "Week 3",
+                id : "id1",
+                lessonObjective: "do better yet again",
+                data : [
+                    {
+                        name : "Student 1",
+                        id : "id0",
+                        score : "1",
+                        observation : "unable to complete",
+                        progress : "1"
+                    },{
+                        name : "Student 2",
+                        id : "id1",
+                        score : "3",
+                        observation : "average performance",
+                        progress : "3"
+                    },{
+                        name : "Student 3",
+                        id : "id2",
+                        score : "5",
+                        observation : "Excellent",
+                        progress : "5"
+                    }
+                ]
+            }
+        ]
+    }
+    renderSessions(mock);
+}
 function loadGroup(){
     $.post("/dispatch",{
         action: actions.loadGroup,
@@ -11,7 +97,11 @@ function loadGroup(){
         console.log(data);
     });
 }
-
+function renderSessions(m){
+    $("#group_name")
+    $("#group_description")
+    $("#learning_objective")
+}
 function addSession(s){
     var $tab = $("<li><a href='#'>"+ s.name+"</a></li>");
     $(".lesson_objective").html(s.lessionObjective);

@@ -2,7 +2,12 @@
 <html>
 <head>
     <title></title>
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
         .group_name{
 
         }
@@ -39,15 +44,36 @@
     </style>
 </head>
 <body>
-    <div id="group_name" class="group_name"></div>
-    <div id="group_description" class="group_description"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="index.html">SLC Demo</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav">
+                        <li><a href="NewGroup.html">Create Cohort</a></li>
+                    </ul>
+                    <div id="username" class="username text-info"></div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 id="group_name"></h1>
+        <h2 id="group_description"></h2>
+        <h3 id="lesson_objective"></h3>
+    </div>
+
     <div class="lesson_objective"></div>
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#">Home</a>
+            <a href="#">Week 1</a>
         </li>
-        <li><a href="#">...</a></li>
-        <li><a href="#">...</a></li>
+        <li><a href="#">Week 2</a></li>
+        <li><a href="#">Week 3</a></li>
+        <li><a href="#">Week 4</a></li>
     </ul>
     <ul class="table_heading">
         <li class="name">Name</li>

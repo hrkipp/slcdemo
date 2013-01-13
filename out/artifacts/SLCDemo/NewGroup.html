@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-          
+
     <!-- Le styles -->
     <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="libs/datepicker/css/datepicker.css" rel="stylesheet">
@@ -20,8 +20,68 @@
               float: right;
               line-height: 40px;
           }
-    </style>  
-                      
+          .field{
+              position: relative;
+              padding: 19px;
+              background: #eee;
+              border: solid 1px #ddd;
+              box-sizing: border-box;
+              margin-bottom: 10px;
+              border-radius: 6px;
+              padding-left: 240px;
+          }
+        .field_label{
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 230px;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            box-sizing: border-box;
+            background: #3a87ad;
+            color: white;
+            line-height: 30px;
+            padding: 19px;
+            border-right: solid 1px #eee;
+        }
+        input, select, textarea{
+            margin: 0 !important;
+            width: 350px;
+            min-height: 34px !important;
+            box-sizing: border-box;
+        }
+        .subsection{
+            padding: 4px 0;
+        }
+        .field_label > div{
+            padding: 4px 0;
+        }
+        .lo_row{
+            padding: 5px 0;
+        }
+        .lo_label{
+            float: left;
+            padding-right: 10px;
+            line-height: 30px;
+        }
+        .student_row{
+            height: 30px;
+            line-height: 30px;
+            border-bottom: solid 1px #ddd;
+            position: relative;
+        }
+        .student_row > input{
+            position: absolute;
+            left: 0;
+            top: 0px;
+        }
+        .student_name{
+            padding-left: 30px;
+        }
+    </style>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,70 +106,67 @@
         </div>
     </div>
     <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Create a New Group</h1>
-          <select id="section_select"></select>
-      </div>
-
-      <div class="well">
-        <label>Group Name</label>
-        <input type="text" id="name">
-      </div>
-        <div class="well">
-        <label>Select students for this cohort</label>
-        <div id="student_list">
-
+        <h1>New Cohort</h1>
+        <div class="container field">
+            <div class="field_label">Name</div>
+            <input type="text" id="name">
         </div>
-      </div>
-        <div class="well">
-        <label>Teachers</label>
-      <div class="btn-group" data-toggle="buttons-checkbox" id="teacher_selection_button_group">
-          <button type="button" class="btn btn-block btn-primary">Minerva McGonagall</button>
-          <button type="button" class="btn btn-block btn-primary">Severus Snape</button>
-      </div>
-      </div>
-        <div class="well">
-        <div>Description</div>
-        <textarea type="text" rows="8" cols="500" id="description" placeholder="Type the group description…">
-            Type the group description...
-        </textarea>
-    </div>
-        <div class="well">
-        <div>Success Condition</div>
-        <textarea type="text" rows="3" cols="500" id="success_condition" placeholder="Type the success condition(s)…">
-            Type the success condition(s)...
-        </textarea>
-    </div>
-          <div class="well">
-              <span> Start Date: </span>
-                <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
-              </span>
-              <div>
-                  <span>Number of weeks</span>
-                  <input type="number" class="span2" value="1" id="num_weeks">
-              </div>
-          </span>
-          </div>
-          <div class="well">
-            <label>Session length</label>
-            <select id="session_length">
-                <option value="15">15 Minutes</option>
-                <option value="30">30 Minutes</option>
-                <option value="45">45 Minutes</option>
-                <option value="60">60 Minutes</option>
-            </select>
-          </div>
+
+        <div class="container field">
+            <div class="field_label">Sections</div>
+            <select id="section_select"></select>
         </div>
-        <button id="create_cohort" type="submit" class="btn">Create Cohort</button>
+
+      <div class="container field">
+        <div class="field_label">Students</div>
+        <div id="student_list">Please select a session</div>
+      </div>
+      <div class="container field">
+          <div class="field_label">Teachers</div>
+          <select>
+              <option></option>
+              <option>Minerva McGonagall</option>
+              <option>Severus Snape</option>
+          </select>
+      </div>
+      <div class="container field">
+        <div class="field_label">Cohort Goals</div>
+        <textarea type="text" rows="6" cols="1000" id="description" placeholder="What is the purpose of this cohort?"></textarea>
+    </div>
+    <div class="container field">
+        <div class="field_label">Success Condition</div>
+        <textarea type="text" rows="6" cols="1000" id="success_condition" placeholder="What goals must this cohort accomplish to be considered successful?"></textarea>
+    </div>
+    <div class="container field">
+        <div class="field_label">
+            <div>Start Date</div>
+            <div>Number of weeks</div>
+        </div>
+        <div class="subsection">
+            <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
+        </div>
+        <div class="subsection">
+            <input type="number" class="span2" value="1" id="num_weeks">
+        </div>
+    </div>
+    <div class="container field">
+        <div class="field_label">Learning Objectives</div>
+        <div class="learning_objectives">
+            <div class='lo_row'><div class='lo_label'>Week 1</div><input type='text'></div>
+        </div>
+    </div>
+    <div class="container field">
+        <div class="field_label">Session Length</div>
+        <select id="session_length">
+            <option value="15">15 Minutes</option>
+            <option value="30">30 Minutes</option>
+            <option value="45">45 Minutes</option>
+            <option value="60">60 Minutes</option>
+        </select>
+    </div>
+    <button id="create_cohort" type="submit" class="btn btn-success btn-large btn-block">Create Cohort</button>
 
       <hr>
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
     </div> <!-- /container -->
 
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>

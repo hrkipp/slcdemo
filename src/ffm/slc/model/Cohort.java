@@ -11,6 +11,7 @@ import ffm.slc.rest.RestClient;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +29,9 @@ public class Cohort extends Entity {
 //    private String[] staffIds;
     private String cohortType = CohortType.ACADEMIC_INTERVENTION.toString();
     private String entityType = "cohort";
+
+    public Cohort() {
+    }
 
     public String getCohortDescription() {
         return cohortDescription;
@@ -77,7 +81,7 @@ public class Cohort extends Entity {
         public String save(Cohort cohort) {
             String json = gson.toJson(cohort);
             ClientResponse resp = restClient.postRelative("api/rest/v1/cohorts",json);
-           List<String> locations = resp.getHeaders().get("Location");
+            List<String> locations = resp.getHeaders().get("Location");
             String loc = locations.get(0);
             loc = loc.split("/")[loc.split("/").length-1];
             return loc;

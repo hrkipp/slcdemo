@@ -38,7 +38,7 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
 
         Cohort cohort = new Cohort();
 
-        cohort.setCohortDescription(action.getDescription());
+        cohort.setCohortDescription(action.getDescription().isEmpty()?null:action.getDescription());
         cohort.setCohortIdentifier(action.getName());
 
         //TODO MORE DATA!
@@ -50,7 +50,6 @@ public class SaveCohortActionHandler implements ActionHandler<SaveCohort, SaveCo
         School[] schools = schoolDAO.get(staff);
 
         cohort.setEducationOrg(schools[0].getId().getValue());
-
         cohort.setStaffId(new String[]{staff.getId().getValue()});
 
         String id = cohortDAO.save(cohort);
