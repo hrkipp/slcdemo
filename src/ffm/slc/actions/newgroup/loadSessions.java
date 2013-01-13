@@ -1,11 +1,12 @@
 package ffm.slc.actions.newgroup;
 
-/**
- * Created with IntelliJ IDEA.
- * User: TJ
- * Date: 1/12/13
- * Time: 5:18 PM
- * To change this template use File | Settings | File Templates.
- */
-public class loadSessions {
+
+import ffm.slc.dispatch.Action;
+import ffm.slc.dispatch.Result;
+
+public class loadSessions implements Action {
+
+    public class result implements Result{
+        private Session[] sessions;
+    }
 }
