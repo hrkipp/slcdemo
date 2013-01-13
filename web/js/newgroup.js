@@ -2,6 +2,9 @@ $(document).ready(function(){
     loadSections();
     $("#start_date_picker").datepicker();
     $("#end_date_picker").datepicker();
+    $("#create_cohort").click(function(){
+        saveGroup();
+    });
 });
 
 function loadStudents(s){

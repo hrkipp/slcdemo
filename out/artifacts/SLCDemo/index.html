@@ -12,6 +12,32 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      .username{
+         float: right;
+          line-height: 40px;
+      }
+      .group_widget{
+         display: block;
+      }
+      .group_column{
+          float: left;
+      }
+      .progress_0{}
+      .progress_1{
+          background: red;
+      }
+      .progress_2{
+          background: orange;
+      }
+      .progress_3{
+          background: yellow;
+      }
+      .progress_4{
+          background: #9acd32;
+      }
+      .progress_5{
+          background: green;
+      }
     </style>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -29,11 +55,10 @@
             <ul class="nav">
               <li class="active"><a href="#">Dashboard</a></li>
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button id="login" type="submit" class="btn">Sign in</button>
-            </form>
+            <ul class="nav">
+                <li><a href="NewGroup.html">Create Cohort</a></li>
+            </ul>
+            <div id="username" class="username text-info"></div>
           </div><!--/.nav-collapse -->
         </div>
       </div>

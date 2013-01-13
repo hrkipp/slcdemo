@@ -2,8 +2,60 @@
 <html>
 <head>
     <title></title>
+    <style type="text/css">
+        .group_name{
+
+        }
+        .group_description{
+
+        }
+        .group_sessions{
+
+        }
+        .table_heading{
+            font-size: 0;
+        }
+        .table_heading > li{
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 13px;
+        }
+        .name{
+            width: 25%;
+        }
+        .progress{
+            width: 15%;
+        }
+        .score{
+            width: 10%;
+        }
+        .observation{
+             width: 50%;
+        }
+        .row{
+
+        }
+    </style>
 </head>
 <body>
+    <div id="group_name" class="group_name"></div>
+    <div id="group_description" class="group_description"></div>
+    <div class="lesson_objective"></div>
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#">Home</a>
+        </li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+    </ul>
+    <ul class="table_heading">
+        <li class="name">Name</li>
+        <li class="progress">Progress</li>
+        <li class="score">Score</li>
+        <li class="observation">Observation</li>
+    </ul>
+    <div class="body"></div>
 
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>

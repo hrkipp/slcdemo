@@ -1,8 +1,10 @@
 package ffm.slc.handlers.dashboard;
 
+import ffm.slc.actions.dashboard.DbGroup;
 import ffm.slc.actions.dashboard.loadDashboard;
 import ffm.slc.dispatch.ActionException;
 import ffm.slc.dispatch.ActionHandler;
+import ffm.slc.model.Cohort;
 import ffm.slc.model.Staff;
 
 import javax.inject.Inject;
@@ -17,10 +19,12 @@ import javax.inject.Inject;
 public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, loadDashboard.Result> {
 
     private Staff.DAO staffDAO;
+    private Cohort.DAO cohortDAO;
 
     @Inject
-    public LoadDashboardActionHandler(Staff.DAO staffDAO) {
+    public LoadDashboardActionHandler(Staff.DAO staffDAO, Cohort.DAO cohortDAO) {
         this.staffDAO = staffDAO;
+        this.cohortDAO = cohortDAO;
     }
 
 
@@ -31,8 +35,14 @@ public class LoadDashboardActionHandler implements ActionHandler<loadDashboard, 
 
         String name = staff.getName().getFullame();
 
+        Cohort[] cohorts = cohortDAO.getAll();
+
+        DbGroup[] groups = new DbGroup[cohorts.length];
+        for(int i = 0; i<cohorts.length;i++){
+            groups[i] = new DbGroup(cohorts[i].getCohortIdentifier(), cohorts[i].getId().getValue(),null);
+        }
 
 
-        return new loadDashboard.Result(name, null);
+        return new loadDashboard.Result(name, groups);
     }
 }

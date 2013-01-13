@@ -63,6 +63,18 @@ public class Cohort extends Entity {
             System.out.println(locations);
             return null;
         }
+
+        public Cohort[] getAll() {
+
+                Entity home = null;
+                if(sessionProvder.get().getAttribute("home") == null){
+                    home = gson.fromJson(restClient.getRelative("api/rest/v1/home"), Entity.class);
+                    sessionProvder.get().setAttribute("home", home);
+                }
+                home = (Entity) sessionProvder.get().getAttribute("home");
+                String ret = restClient.get(home.getLink("getCohorts"));
+                return gson.fromJson(ret, Cohort[].class);
+        }
     }
 
 }

@@ -13,4 +13,10 @@ public class DbGroup {
     private String name;
     private String id;
     private int[][] sessions;
+
+    public DbGroup(String name, String id, int[][] sessions) {
+        this.name = name;
+        this.id = id;
+        this.sessions = sessions;
+    }
 }

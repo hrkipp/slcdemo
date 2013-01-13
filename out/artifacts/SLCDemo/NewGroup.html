@@ -1,12 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <title>SLC Demo - New Group page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+          
+    <!-- Le styles -->
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="libs/datepicker/css/datepicker.css" rel="stylesheet">
+    <link href="libs/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet">
+    <style type="text/css">
+          body {
+              padding-top: 60px;
+              padding-bottom: 40px;
+            }
+          .username{
+              float: right;
+              line-height: 40px;
+          }
+    </style>  
+                      
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">SLC Demo</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav">
+                        <li><a href="NewGroup.html">Create Cohort</a></li>
+                    </ul>
+                    <div id="username" class="username text-info"></div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Create a New Group</h1>
+          <select id="section_select"></select>
+      </div>
+
+      <div class="well">
+        <label>Group Name</label>
+        <input type="text" id="name">
+      </div>
+        <div class="well">
+        <label>Select students for this cohort</label>
+        <div id="student_list">
+
+        </div>
+      </div>
+        <div class="well">
+        <label>Teachers</label>
+      <div class="btn-group" data-toggle="buttons-checkbox" id="teacher_selection_button_group">
+          <button type="button" class="btn btn-block btn-primary">Minerva McGonagall</button>
+          <button type="button" class="btn btn-block btn-primary">Severus Snape</button>
+      </div>
+      </div>
+        <div class="well">
+        <div>Description</div>
+        <textarea type="text" rows="8" cols="500" id="description" placeholder="Type the group description…">
+            Type the group description...
+        </textarea>
+    </div>
+        <div class="well">
+        <div>Success Condition</div>
+        <textarea type="text" rows="3" cols="500" id="success_condition" placeholder="Type the success condition(s)…">
+            Type the success condition(s)...
+        </textarea>
+    </div>
+          <div class="well">
+              <span> Start Date: </span>
+                <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
+              </span>
+              <div>
+                  <span>Number of weeks</span>
+                  <input type="number" class="span2" value="1" id="num_weeks">
+              </div>
+          </span>
+          </div>
+          <div class="well">
+            <label>Session length</label>
+            <select id="session_length">
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">60 Minutes</option>
+            </select>
+          </div>
+        </div>
+        <button id="create_cohort" type="submit" class="btn">Create Cohort</button>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
 
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="js/actions.js"></script>
 <script src="js/newgroup.js"></script>
 </body>
