@@ -1,11 +1,8 @@
 $(document).ready(function(){
-    var datepicker;
 
-    $('#time_picker').timepicker(); 
-    datepicker = $('#start_date_picker');
-    datepicker.datepicker();
-    datepicker = $('#end_date_picker');
-    datepicker.datepicker();
+    $('#time_picker').timepicker({defaultTime: '09:00 AM'}); 
+    $("#start_date_picker").datepicker();
+    $("#end_date_picker").datepicker();
 });
 
 function loadStudents(){
