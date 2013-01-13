@@ -1,5 +1,7 @@
+var group ="";
 $(document).ready(function(){
-   loadGroup();
+    group = window.location.search.substring(4,window.location.search.length);
+    loadGroup();
 //    loadMockGroup();
 });
 function loadMockGroup(){
@@ -114,9 +116,10 @@ function loadMockGroup(){
     renderSessions(mock);
 }
 function loadGroup(){
+    console.log(group);
     $.post("/dispatch",{
         action: actions.loadGroup,
-        data : "{email : test}"
+        data : "{'id' : "+group+"}"
     },function(data){
         var response = jQuery.parseJSON(data);
         console.log(data);
