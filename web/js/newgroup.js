@@ -27,7 +27,7 @@ function loadStudents(s){
         var list = $("#student_list").html("");
         for(var i=0; i<students.length; i++){
             var st = students[i];
-           var $student = $("<div><input type='checkbox' data-id='"+st.id+"'></div>");
+           var $student = $("<div class='student_row'><input type='checkbox' data-id='"+st.id+"'><div class='student_name'>"+st.name+"</div></div>");
             list.append($student);
         }
     });
