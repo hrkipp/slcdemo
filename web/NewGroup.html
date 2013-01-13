@@ -15,7 +15,11 @@
           body {
               padding-top: 60px;
               padding-bottom: 40px;
-            }       
+            }
+          .username{
+              float: right;
+              line-height: 40px;
+          }
     </style>  
                       
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -25,32 +29,39 @@
 
 </head>
 <body>
-
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">SLC Demo</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav">
+                        <li><a href="NewGroup.html">Create Cohort</a></li>
+                    </ul>
+                    <div id="username" class="username text-info"></div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
     <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Create a New Group</h1>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose a Section<b class="caret"></b></a>
-            <ul class="dropdown-menu" id="new_group_section_choice_list">
-            </ul>
+          <select id="section_select"></select>
       </div>
 
-      <form>
-        <fieldset>
-        <legend>Group Information</legend>
-        <div class="well">
+      <div class="well">
         <label>Group Name</label>
-        <input type="text" name="groupname">
-    </div>
-        <div class="well">
-        <label>Students</label>
-      <div class="btn-group" data-toggle="buttons-checkbox" id="student_selection_button_group">
-          <button type="button" class="btn btn-block btn-primary">Ronald Weasley</button>
-          <button type="button" class="btn btn-block btn-primary">Hermione Granger</button>
-          <button type="button" class="btn btn-block btn-primary">Harry Potter</button>
+        <input type="text" id="name">
       </div>
+        <div class="well">
+        <label>Select students for this cohort</label>
+        <div id="student_list">
+
+        </div>
       </div>
         <div class="well">
         <label>Teachers</label>
@@ -60,42 +71,38 @@
       </div>
       </div>
         <div class="well">
-        <label>Description</label>
-        <textarea type="text" rows="3" cols="500" placeholder="Type the group description…">
+        <div>Description</div>
+        <textarea type="text" rows="8" cols="500" id="description" placeholder="Type the group description…">
             Type the group description...
         </textarea>
     </div>
         <div class="well">
-        <label>Success Condition</label>
-        <textarea type="text" rows="3" cols="500" placeholder="Type the success condition(s)…">
+        <div>Success Condition</div>
+        <textarea type="text" rows="3" cols="500" id="success_condition" placeholder="Type the success condition(s)…">
             Type the success condition(s)...
         </textarea>
     </div>
           <div class="well">
               <span> Start Date: </span>
-              <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
-          </span>
-              <span> End Date: </span>
-              <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="end_date_picker" >
+                <input type="text" class="span2" value="02/16/2012" data-date-format="mm/dd/yyyy" id="start_date_picker" >
+              </span>
+              <div>
+                  <span>Number of weeks</span>
+                  <input type="number" class="span2" value="1" id="num_weeks">
+              </div>
           </span>
           </div>
           <div class="well">
-            <label>When the group will meet</label>
-              <div class="btn-group" data-toggle="buttons-checkbox" id="weekday_selection_button_group">
-                  <button type="button" class="btn btn-primary">Monday </button>
-                  <button type="button" class="btn btn-primary">Tuesday </button>
-                  <button type="button" class="btn btn-primary">Wednesday </button>
-                  <button type="button" class="btn btn-primary">Thursday </button>
-                  <button type="button" class="btn btn-primary">Friday </button>
-              </div>
-              <div class="input-append bootstrap-timepicker-component">
-                  <input class="input-small timepicker-default" id="time_picker" type="text" value="09:00 AM">
-                  <span class="add-on"><i class="icon-time"></i></span>
-              </div>
+            <label>Session length</label>
+            <select id="session_length">
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">60 Minutes</option>
+            </select>
+          </div>
         </div>
         <button type="submit" class="btn">Create Group</button>
-    </fieldset>
-    </form>
 
       <hr>
 
@@ -107,7 +114,7 @@
 
 <script src="libs/jquery/jquery-1.8.3.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script src="libs/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 <script src="libs/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="js/actions.js"></script>
 <script src="js/newgroup.js"></script>

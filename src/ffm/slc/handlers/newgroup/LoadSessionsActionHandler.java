@@ -6,6 +6,7 @@ import ffm.slc.actions.newgroup.loadSessions;
 import ffm.slc.dispatch.ActionException;
 import ffm.slc.dispatch.ActionHandler;
 import ffm.slc.model.Section;
+import ffm.slc.model.Staff;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,10 +18,12 @@ import ffm.slc.model.Section;
 public class LoadSessionsActionHandler implements ActionHandler<loadSessions, loadSessions.Result> {
 
     private Section.DAO sectionDAO;
+    private Staff.DAO staffDAO;
 
     @Inject
-    public LoadSessionsActionHandler(Section.DAO sectionDAO) {
+    public LoadSessionsActionHandler(Section.DAO sectionDAO, Staff.DAO staffDAO) {
         this.sectionDAO = sectionDAO;
+        this.staffDAO = staffDAO;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class LoadSessionsActionHandler implements ActionHandler<loadSessions, lo
         for(int i = 0;i<sections.length;i++){
             sess[i] = new Session(sections[i].getUniqueSectionCode(), sections[i].getId().getValue());
         }
-
-        return new loadSessions.Result(sess);
+        String name = staffDAO.getCurrent().getName().getFullame();
+        return new loadSessions.Result(sess,name);
     }
 }
