@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 });
 function loadStudents(){
     $.post("/dispatch",{
@@ -13,6 +12,16 @@ function loadStudents(){
 function saveGroup(){
     $.post("/dispatch",{
         action: actions.saveGroup,
+        data : "{email : test}"
+    },function(data){
+        var response = jQuery.parseJSON(data);
+        console.log(data);
+    });
+}
+
+function loadSections() {
+    $.post("/dispatch",{
+        action: actions.loadSections,
         data : "{email : test}"
     },function(data){
         var response = jQuery.parseJSON(data);
